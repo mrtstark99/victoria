@@ -148,7 +148,15 @@ jobs:
 
       - name: Verify production health
         run: |
-          curl --fail --silent --show-error --retry 5 --retry-delay 2 \
-            https://victoria.dev-br.xyz/ > /dev/null
-          curl --fail --silent --show-error \
-            https://victoria.dev-br.xyz/login.php > /dev/null
+          homepage=$(curl --fail --silent --show-error --retry 5 --retry-delay 2 \
+            https://victoria.dev-br.xyz/)
+          login=$(curl --fail --silent --show-error \
+            https://victoria.dev-br.xyz/login.php)
+
+          if ! grep -q '<!DOCTYPE html>' <<<"${homepage}" || \
+             ! grep -q '<!DOCTYPE html>' <<<"${login}"; then
+            echo 'Production returned an empty or invalid HTML response.'
+            ssh brhub-web \
+              "sudo tail -n 100 /www/wwwlogs/victoria.dev-br.xyz.error.log 2>/dev/null || true"
+            exit 1
+          fi
