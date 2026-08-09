@@ -84,16 +84,34 @@ jobs:
             "0,/^[[:space:]]*root[[:space:]]+[^;]+;/s##    root ${document_root};#" \
             "${nginx_conf}"
 
-          php_include=$(sudo find /www/server -type f -name 'enable-php-[0-9][0-9].conf' \
-            ! -name 'enable-php-00.conf' 2>/dev/null | sort -V | tail -n 1 || true)
-
-          if sudo grep -qE 'enable-php-00\.conf' "${nginx_conf}"; then
-            if [ -z "${php_include}" ]; then
-              echo 'No enabled PHP-FPM Nginx include was found.'
-              exit 1
-            fi
+          if sudo grep -qE '^[[:space:]]*index[[:space:]]+' "${nginx_conf}"; then
             sudo sed -i -E \
-              "s#^([[:space:]]*)include[[:space:]]+[^;]*enable-php-00\.conf;#\1include ${php_include};#" \
+              "0,/^[[:space:]]*index[[:space:]]+[^;]+;/s##    index index.php index.html index.htm;#" \
+              "${nginx_conf}"
+          else
+            root_line=$(sudo grep -nE '^[[:space:]]*root[[:space:]]+' "${nginx_conf}" | head -n 1 | cut -d: -f1)
+            sudo sed -i "${root_line}a\\    index index.php index.html index.htm;" "${nginx_conf}"
+          fi
+
+          php_include=''
+          while IFS= read -r candidate; do
+            socket=$(sudo grep -oE 'unix:[^;[:space:]]+' "${candidate}" | head -n 1 | sed 's#^unix:##' || true)
+            if [ -n "${socket}" ] && sudo test -S "${socket}"; then
+              php_include="${candidate}"
+              break
+            fi
+          done < <(sudo find /www/server -type f -name 'enable-php-[0-9][0-9].conf' \
+            ! -name 'enable-php-00.conf' 2>/dev/null | sort -Vr)
+
+          if [ -z "${php_include}" ]; then
+            echo 'No running PHP-FPM socket has a matching Nginx include.'
+            sudo ss -lx | grep -E 'php|cgi' || true
+            exit 1
+          fi
+
+          if sudo grep -qE 'enable-php-[0-9]+\.conf' "${nginx_conf}"; then
+            sudo sed -i -E \
+              "s#^([[:space:]]*)include[[:space:]]+[^;]*enable-php-[0-9]+\.conf;#\1include ${php_include};#" \
               "${nginx_conf}"
           fi
 
@@ -110,10 +128,8 @@ jobs:
             sudo sed -i "${closing_line}i\\    include ${php_include};" "${nginx_conf}"
           fi
 
-          php_bin=$(sudo find /www/server/php -type f -path '*/bin/php' 2>/dev/null | sort -V | tail -n 1 || true)
-          if [ -z "${php_bin}" ]; then
-            php_bin=$(command -v php || true)
-          fi
+          php_version=$(basename "${php_include}" | sed -E 's/enable-php-([0-9]+)\.conf/\1/')
+          php_bin="/www/server/php/${php_version}/bin/php"
           if [ -z "${php_bin}" ] || ! "${php_bin}" -r "exit(extension_loaded('pdo_sqlite') ? 0 : 1);"; then
             echo 'PHP PDO SQLite is not enabled on the web server.'
             exit 1
@@ -129,3 +145,10 @@ jobs:
       - name: Reload Nginx on Web Server
         run: |
           ssh brhub-web "sudo systemctl reload nginx"
+
+      - name: Verify production health
+        run: |
+          curl --fail --silent --show-error --retry 5 --retry-delay 2 \
+            https://victoria.dev-br.xyz/ > /dev/null
+          curl --fail --silent --show-error \
+            https://victoria.dev-br.xyz/login.php > /dev/null
