@@ -187,6 +187,17 @@ jobs:
               echo "Relevant PHP-FPM pool settings:"
               sudo grep -RHE "^(user|group|listen|catch_workers_output|php_admin_.*(open_basedir|error_log|display_errors))" \
                 "/www/server/php/${php_version}/etc" 2>/dev/null | head -n 120
+              echo "Direct origin response:"
+              curl -sS -D - -H "Host: victoria.dev-br.xyz" http://127.0.0.1/index.php | head -c 2500
+              echo
+              if command -v cgi-fcgi >/dev/null 2>&1; then
+                echo "Direct PHP-FPM response:"
+                sudo -u "${php_user}" env REQUEST_METHOD=GET \
+                  SCRIPT_FILENAME=/www/wwwroot/victoria.dev-br.xyz/public/index.php \
+                  SCRIPT_NAME=/index.php SERVER_NAME=victoria.dev-br.xyz \
+                  cgi-fcgi -bind -connect "${socket}" 2>&1 | head -c 2500
+                echo
+              fi
               echo "Running production entry point as ${php_user} with PHP ${php_version}:"
               cd /www/wwwroot/victoria.dev-br.xyz
               sudo -u "${php_user}" env APP_DEBUG=true "${php_bin}" -d display_errors=1 public/index.php 2>&1 | head -c 4000
