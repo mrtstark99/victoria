@@ -16,17 +16,17 @@
   --primary-light: #EBF5F0;     /* Soft mint green tint */
   --primary-tint: #C3E2D5;      /* Soft border mint */
 
-  --secondary: #E59A18;            /* Bright, warm golden amber */
-  --secondary-hover: #C48110;
-  --secondary-glow: rgba(229, 154, 24, 0.15);
-  --secondary-light: #FEF9F0;      /* Warm soft glow background */
-  --secondary-tint: #F9E7CD;
+  --secondary: #102a83;         /* Royal Blue from Logo */
+  --secondary-hover: #0b1d5c;
+  --secondary-glow: rgba(16, 42, 131, 0.12);
+  --secondary-light: #eef2fc;   /* Soft royal blue tint */
+  --secondary-tint: #b5c2e5;    /* Soft blue border/line color */
 
-  --accent: #102a83;         /* Royal Blue from Logo */
-  --accent-hover: #0b1d5c;
-  --accent-glow: rgba(16, 42, 131, 0.12);
-  --accent-light: #eef2fc;   /* Soft royal blue tint */
-  --accent-tint: #b5c2e5;    /* Soft blue border/line color */
+  --accent: #E59A18;            /* Bright, warm golden amber */
+  --accent-hover: #111111;      /* Matte Black */
+  --accent-glow: rgba(229, 154, 24, 0.15);
+  --accent-light: #1a1a1a;      /* Matte Black for icon box backgrounds */
+  --accent-tint: #F9E7CD;
 
   /* Neutrals */
   --ink: #0A2016;               /* Deep forest black */
@@ -333,7 +333,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu-link:hover {
-  color: var(--primary);
+  color: var(--ink);
 }
 
 .nav-menu-link:hover::after,
@@ -343,7 +343,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu-link.active {
-  color: var(--primary);
+  color: var(--ink);
 }
 
 .header-right {
@@ -1448,13 +1448,14 @@ textarea.form-control {
 
 .fab-main-trigger.active {
   background-color: var(--accent);
-  color: var(--white);
+  color: var(--ink); /* Black icon on gold background */
   transform: rotate(90deg);
   box-shadow: 0 8px 32px var(--accent-glow);
 }
 
 .fab-main-trigger.active:hover {
-  background-color: var(--accent-hover);
+  background-color: var(--ink); /* Matte Black background */
+  color: var(--accent);         /* Gold icon */
   transform: scale(1.06) rotate(90deg);
 }
 
