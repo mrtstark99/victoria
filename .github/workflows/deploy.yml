@@ -84,9 +84,10 @@ jobs:
             "0,/^[[:space:]]*root[[:space:]]+[^;]+;/s##    root ${document_root};#" \
             "${nginx_conf}"
 
+          php_include=$(sudo find /www/server -type f -name 'enable-php-[0-9][0-9].conf' \
+            ! -name 'enable-php-00.conf' 2>/dev/null | sort -V | tail -n 1 || true)
+
           if sudo grep -qE 'enable-php-00\.conf' "${nginx_conf}"; then
-            php_include=$(sudo find /www/server -type f -name 'enable-php-[0-9][0-9].conf' \
-              ! -name 'enable-php-00.conf' 2>/dev/null | sort -V | tail -n 1 || true)
             if [ -z "${php_include}" ]; then
               echo 'No enabled PHP-FPM Nginx include was found.'
               exit 1
@@ -97,8 +98,16 @@ jobs:
           fi
 
           if ! sudo grep -qE 'enable-php-[1-9][0-9]*\.conf|fastcgi_pass' "${nginx_conf}"; then
-            echo 'The virtual host still has no PHP-FPM handler.'
-            exit 1
+            if [ -z "${php_include}" ]; then
+              echo 'The virtual host has no PHP-FPM handler and no PHP include is installed.'
+              exit 1
+            fi
+            closing_line=$(sudo grep -nE '^[[:space:]]*}[[:space:]]*$' "${nginx_conf}" | tail -n 1 | cut -d: -f1)
+            if [ -z "${closing_line}" ]; then
+              echo 'Unable to find the end of the Nginx server block.'
+              exit 1
+            fi
+            sudo sed -i "${closing_line}i\\    include ${php_include};" "${nginx_conf}"
           fi
 
           php_bin=$(sudo find /www/server/php -type f -path '*/bin/php' 2>/dev/null | sort -V | tail -n 1 || true)
