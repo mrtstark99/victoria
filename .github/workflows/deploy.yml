@@ -158,5 +158,19 @@ jobs:
             echo 'Production returned an empty or invalid HTML response.'
             ssh brhub-web \
               "sudo tail -n 100 /www/wwwlogs/victoria.dev-br.xyz.error.log 2>/dev/null || true"
+            ssh brhub-web 'bash -s' <<'DIAGNOSTIC'
+            set +e
+            nginx_conf=$(sudo grep -RIl --include='*.conf' 'server_name[^;]*victoria.dev-br.xyz' \
+              /www/server/panel/vhost/nginx /etc/nginx/sites-enabled /etc/nginx/conf.d 2>/dev/null | head -n 1)
+            php_version=$(sudo grep -oE 'enable-php-[0-9]+' "${nginx_conf}" | tail -n 1 | sed 's/enable-php-//')
+            php_bin="/www/server/php/${php_version}/bin/php"
+            echo "Running production entry point with PHP ${php_version}:"
+            cd /www/wwwroot/victoria.dev-br.xyz
+            APP_DEBUG=true "${php_bin}" -d display_errors=1 public/index.php 2>&1 | head -c 4000
+            echo
+            echo 'Recent PHP runtime logs:'
+            sudo find "/www/server/php/${php_version}/var/log" -type f -mmin -15 \
+              -print -exec tail -n 60 {} \; 2>/dev/null | tail -n 240
+            DIAGNOSTIC
             exit 1
           fi
