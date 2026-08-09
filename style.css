@@ -16,17 +16,17 @@
   --primary-light: #EBF5F0;     /* Soft mint green tint */
   --primary-tint: #C3E2D5;      /* Soft border mint */
 
-  --secondary: #102a83;         /* Royal Blue from Logo */
-  --secondary-hover: #0b1d5c;
-  --secondary-glow: rgba(16, 42, 131, 0.12);
-  --secondary-light: #eef2fc;   /* Soft royal blue tint */
-  --secondary-tint: #b5c2e5;    /* Soft blue border/line color */
+  --secondary: #E59A18;            /* Bright, warm golden amber */
+  --secondary-hover: #C48110;
+  --secondary-glow: rgba(229, 154, 24, 0.15);
+  --secondary-light: #FEF9F0;      /* Warm soft glow background */
+  --secondary-tint: #F9E7CD;
 
-  --accent: #E59A18;            /* Bright, warm golden amber */
-  --accent-hover: #C48110;
-  --accent-glow: rgba(229, 154, 24, 0.15);
-  --accent-light: #FEF9F0;      /* Warm soft glow background */
-  --accent-tint: #F9E7CD;
+  --accent: #102a83;         /* Royal Blue from Logo */
+  --accent-hover: #0b1d5c;
+  --accent-glow: rgba(16, 42, 131, 0.12);
+  --accent-light: #eef2fc;   /* Soft royal blue tint */
+  --accent-tint: #b5c2e5;    /* Soft blue border/line color */
 
   /* Neutrals */
   --ink: #0A2016;               /* Deep forest black */
