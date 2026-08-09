@@ -16,11 +16,11 @@
   --primary-light: #EBF5F0;     /* Soft mint green tint */
   --primary-tint: #C3E2D5;      /* Soft border mint */
 
-  --secondary: #0B2B1F;         /* Deep Evergreen */
-  --secondary-hover: #071F16;
-  --secondary-glow: rgba(11, 43, 31, 0.12);
-  --secondary-light: #E1ECE7;   /* Soft evergreen tint */
-  --secondary-tint: #B2D1C5;    /* Sage green border/line color */
+  --secondary: #102a83;         /* Royal Blue from Logo */
+  --secondary-hover: #0b1d5c;
+  --secondary-glow: rgba(16, 42, 131, 0.12);
+  --secondary-light: #eef2fc;   /* Soft royal blue tint */
+  --secondary-tint: #b5c2e5;    /* Soft blue border/line color */
 
   --accent: #E59A18;            /* Bright, warm golden amber */
   --accent-hover: #C48110;
@@ -214,14 +214,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-outline {
-  border: 1.5px solid var(--primary-tint);
+  border: 1.5px solid var(--secondary-tint);
   background-color: transparent;
-  color: var(--primary);
+  color: var(--secondary);
 }
 
 .btn-outline:hover {
-  border-color: var(--primary);
-  background-color: var(--primary-light);
+  border-color: var(--secondary);
+  background-color: var(--secondary-light);
   transform: translateY(-2px);
 }
 
@@ -968,6 +968,32 @@ h1, h2, h3, h4, h5, h6 {
 
 .program-card:nth-child(even):hover .program-link {
   color: var(--accent-hover);
+}
+
+/* Card 3 (Tokutei) - Royal Blue highlights */
+.program-card:nth-child(3) .program-tag {
+  color: var(--secondary);
+}
+
+.program-card:nth-child(3) .program-icon-box {
+  background-color: var(--secondary-light);
+  color: var(--secondary);
+}
+
+.program-card:nth-child(3):hover h3 {
+  color: var(--secondary);
+}
+
+.program-card:nth-child(3) .program-meta i {
+  color: var(--secondary);
+}
+
+.program-card:nth-child(3) .program-link {
+  color: var(--secondary);
+}
+
+.program-card:nth-child(3):hover .program-link {
+  color: var(--secondary-hover);
 }
 
 /* --------------------------------------------------------------------------
