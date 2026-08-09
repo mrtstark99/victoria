@@ -22,11 +22,11 @@
   --secondary-light: #eef2fc;   /* Soft royal blue tint */
   --secondary-tint: #b5c2e5;    /* Soft blue border/line color */
 
-  --accent: #E59A18;            /* Bright, warm golden amber */
-  --accent-hover: #111111;      /* Matte Black */
-  --accent-glow: rgba(229, 154, 24, 0.15);
-  --accent-light: #1a1a1a;      /* Matte Black for icon box backgrounds */
-  --accent-tint: #F9E7CD;
+  --accent: #D97706;            /* Rich warm honey gold / Sunlit Amber */
+  --accent-hover: #B45309;      /* Sophisticated deep bronze for natural hover */
+  --accent-glow: rgba(217, 119, 6, 0.15);
+  --accent-light: #FFF7ED;      /* Soft warm cream replacing harsh matte black */
+  --accent-tint: #FED7AA;       /* Elegant warm tint for soft borders */
 
   /* Neutrals */
   --ink: #0A2016;               /* Deep forest black */
@@ -1084,12 +1084,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Step 3 Accent: Gold integration instead of jarring blue block */
 .process-card.accent-step {
-  background: rgba(229, 154, 24, 0.09);
-  border: 1px solid rgba(229, 154, 24, 0.35);
+  background: rgba(217, 119, 6, 0.09);
+  border: 1px solid rgba(217, 119, 6, 0.35);
 }
 
 .process-card.accent-step:hover {
-  background: rgba(229, 154, 24, 0.15);
+  background: rgba(217, 119, 6, 0.15);
   border-color: var(--accent);
 }
 
@@ -1099,7 +1099,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .process-card.accent-step .process-number {
-  color: rgba(229, 154, 24, 0.08);
+  color: rgba(217, 119, 6, 0.08);
 }
 
 /* --------------------------------------------------------------------------
