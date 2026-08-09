@@ -135,8 +135,19 @@ jobs:
             exit 1
           fi
 
-          sudo install -d -o www -g www -m 750 "${deploy_root}/database"
-          sudo chown -R www:www "${deploy_root}/database"
+          php_user=$(sudo stat -c '%U' "${socket}")
+          php_group=$(sudo stat -c '%G' "${socket}")
+          sudo install -d -o "${php_user}" -g "${php_group}" -m 750 "${deploy_root}/database"
+          sudo chown -R "${php_user}:${php_group}" "${deploy_root}/database"
+
+          smoke_output=$(cd "${deploy_root}" && \
+            sudo -u "${php_user}" env APP_DEBUG=true "${php_bin}" -d display_errors=1 public/index.php 2>&1)
+          if ! grep -q '<!DOCTYPE html>' <<<"${smoke_output}"; then
+            echo 'The application failed its PHP runtime smoke test:'
+            echo "${smoke_output}" | head -c 4000
+            exit 1
+          fi
+
           sudo nginx -t
           sudo rm -f "${backup_conf}"
           trap - EXIT
