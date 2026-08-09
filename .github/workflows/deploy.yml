@@ -175,9 +175,18 @@ jobs:
                 /www/server/panel/vhost/nginx /etc/nginx/sites-enabled /etc/nginx/conf.d 2>/dev/null | head -n 1)
               php_version=$(sudo grep -oE "enable-php-[0-9]+" "${nginx_conf}" | tail -n 1 | sed "s/enable-php-//")
               php_bin="/www/server/php/${php_version}/bin/php"
-              echo "Running production entry point with PHP ${php_version}:"
+              php_include=$(sudo grep -oE "[^;[:space:]]*enable-php-${php_version}\\.conf" "${nginx_conf}" | tail -n 1)
+              socket=$(sudo grep -oE "unix:[^;[:space:]]+" "${php_include}" | head -n 1 | sed "s#^unix:##")
+              php_user=$(sudo stat -c "%U" "${socket}")
+              echo "Active PHP include and socket:"
+              sudo cat "${php_include}"
+              sudo stat -c "%U:%G %a %n" "${socket}" /www/wwwroot/victoria.dev-br.xyz/database
+              echo "Relevant PHP-FPM pool settings:"
+              sudo grep -RHE "^(user|group|listen|catch_workers_output|php_admin_.*(open_basedir|error_log|display_errors))" \
+                "/www/server/php/${php_version}/etc" 2>/dev/null | head -n 120
+              echo "Running production entry point as ${php_user} with PHP ${php_version}:"
               cd /www/wwwroot/victoria.dev-br.xyz
-              APP_DEBUG=true "${php_bin}" -d display_errors=1 public/index.php 2>&1 | head -c 4000
+              sudo -u "${php_user}" env APP_DEBUG=true "${php_bin}" -d display_errors=1 public/index.php 2>&1 | head -c 4000
               echo
               echo "Recent PHP runtime logs:"
               sudo find "/www/server/php/${php_version}/var/log" -type f -mmin -15 \
