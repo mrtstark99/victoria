@@ -1,0 +1,55 @@
+name: Deploy Victoria Website
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-victoria
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Cloudflare Tunnel Client
+        run: |
+          curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+          sudo dpkg -i cloudflared.deb
+
+      - name: Setup SSH Config
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          cat <<EOF > ~/.ssh/config
+          Host brhub-services
+            HostName ssh.dev-br.xyz
+            User stark
+            ProxyCommand cloudflared access ssh --hostname %h
+            IdentityFile ~/.ssh/id_ed25519
+            StrictHostKeyChecking no
+
+          Host brhub-web
+            HostName 192.168.0.112
+            User stark
+            ProxyJump brhub-services
+            IdentityFile ~/.ssh/id_ed25519
+            StrictHostKeyChecking no
+          EOF
+
+      - name: Deploy files via rsync
+        run: |
+          rsync -avz --delete --rsync-path="sudo rsync" --chown=www:www \
+            --exclude='.git*' \
+            --exclude='.github' \
+            ./ brhub-web:/www/wwwroot/victoria.dev-br.xyz/
+
+      - name: Reload Nginx on Web Server
+        run: |
+          ssh brhub-web "sudo systemctl reload nginx"
