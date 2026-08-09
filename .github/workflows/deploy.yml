@@ -110,23 +110,33 @@ jobs:
             exit 1
           fi
 
-          if sudo grep -qE 'enable-php-[0-9]+\.conf' "${nginx_conf}"; then
+          runtime_dir="${deploy_root}/.runtime"
+          runtime_include="${runtime_dir}/victoria-php-runtime.conf"
+          sudo install -d -o root -g root -m 755 "${runtime_dir}"
+          printf '%s\n' \
+            'location ~ \.php$ {' \
+            '    try_files $uri =404;' \
+            '    include fastcgi_params;' \
+            '    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;' \
+            '    fastcgi_param DOCUMENT_ROOT $document_root;' \
+            '    fastcgi_param SCRIPT_NAME $fastcgi_script_name;' \
+            "    fastcgi_pass unix:${socket};" \
+            '    fastcgi_index index.php;' \
+            '}' | sudo tee "${runtime_include}" > /dev/null
+
+          if sudo grep -qE 'enable-php-[0-9]+\.conf|victoria-php-runtime\.conf' "${nginx_conf}"; then
             sudo sed -i -E \
-              "s#^([[:space:]]*)include[[:space:]]+[^;]*enable-php-[0-9]+\.conf;#\1include ${php_include};#" \
+              "s#^([[:space:]]*)include[[:space:]]+[^;]*(enable-php-[0-9]+\.conf|victoria-php-runtime\.conf);#\1include ${runtime_include};#" \
               "${nginx_conf}"
           fi
 
-          if ! sudo grep -qE 'enable-php-[1-9][0-9]*\.conf|fastcgi_pass' "${nginx_conf}"; then
-            if [ -z "${php_include}" ]; then
-              echo 'The virtual host has no PHP-FPM handler and no PHP include is installed.'
-              exit 1
-            fi
+          if ! sudo grep -qE 'victoria-php-runtime\.conf|fastcgi_pass' "${nginx_conf}"; then
             closing_line=$(sudo grep -nE '^[[:space:]]*}[[:space:]]*$' "${nginx_conf}" | tail -n 1 | cut -d: -f1)
             if [ -z "${closing_line}" ]; then
               echo 'Unable to find the end of the Nginx server block.'
               exit 1
             fi
-            sudo sed -i "${closing_line}i\\    include ${php_include};" "${nginx_conf}"
+            sudo sed -i "${closing_line}i\\    include ${runtime_include};" "${nginx_conf}"
           fi
 
           php_version=$(basename "${php_include}" | sed -E 's/enable-php-([0-9]+)\.conf/\1/')
@@ -176,13 +186,13 @@ jobs:
               set +e
               nginx_conf=$(sudo grep -RIl --include="*.conf" "server_name[^;]*victoria.dev-br.xyz" \
                 /www/server/panel/vhost/nginx /etc/nginx/sites-enabled /etc/nginx/conf.d 2>/dev/null | head -n 1)
-              php_version=$(sudo grep -oE "enable-php-[0-9]+" "${nginx_conf}" | tail -n 1 | sed "s/enable-php-//")
+              runtime_include=$(sudo grep -oE "[^;[:space:]]*victoria-php-runtime\.conf" "${nginx_conf}" | tail -n 1)
+              socket=$(sudo grep -oE "unix:[^;[:space:]]+" "${runtime_include}" | head -n 1 | sed "s#^unix:##")
+              php_version=$(basename "${socket}" | sed -E "s/php-cgi-([0-9]+)\.sock/\1/")
               php_bin="/www/server/php/${php_version}/bin/php"
-              php_include=$(sudo grep -oE "[^;[:space:]]*enable-php-${php_version}\\.conf" "${nginx_conf}" | tail -n 1)
-              socket=$(sudo grep -oE "unix:[^;[:space:]]+" "${php_include}" | head -n 1 | sed "s#^unix:##")
               php_user=$(sudo stat -c "%U" "${socket}")
               echo "Active PHP include and socket:"
-              sudo cat "${php_include}"
+              sudo cat "${runtime_include}"
               sudo stat -c "%U:%G %a %n" "${socket}" /www/wwwroot/victoria.dev-br.xyz/database
               echo "Relevant PHP-FPM pool settings:"
               sudo grep -RHE "^(user|group|listen|catch_workers_output|php_admin_.*(open_basedir|error_log|display_errors))" \
