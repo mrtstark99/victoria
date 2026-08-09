@@ -1,0 +1,92 @@
+﻿/* --------------------------------------------------------------------------
+   7. TRUST PROOF BAR
+   -------------------------------------------------------------------------- */
+.trust {
+  position: relative;
+  z-index: 20;
+  margin-top: 0;
+  padding-top: 42px;
+  padding-bottom: 50px;
+}
+
+.trust-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-medium);
+  background-color: var(--white);
+}
+
+@media (min-width: 576px) {
+  .trust-card { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 992px) {
+  .trust-card { grid-template-columns: repeat(4, 1fr); }
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 30px;
+  border-bottom: 1px solid var(--light-gray);
+  border-right: 1px solid var(--light-gray);
+  transition: var(--transition-fast);
+}
+
+.trust-item:hover {
+  background-color: var(--rice);
+}
+
+.trust-item:last-child {
+  border-right: none;
+}
+
+@media (min-width: 992px) {
+  .trust-item { border-bottom: none; }
+}
+
+.trust-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: var(--primary-light);
+  color: var(--primary);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  transition: var(--transition-smooth);
+}
+
+.trust-item:hover .trust-icon {
+  transform: translateY(-2px);
+}
+
+.trust-item:nth-child(even) .trust-icon {
+  background-color: var(--primary-light);
+  color: var(--primary);
+}
+
+.trust-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.trust-text strong {
+  font-size: 0.95rem;
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+
+.trust-text small {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+

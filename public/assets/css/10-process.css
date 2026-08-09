@@ -1,0 +1,106 @@
+﻿/* --------------------------------------------------------------------------
+   9. PROCESS SECTION (DARK MESH SYSTEM)
+   -------------------------------------------------------------------------- */
+.process-section {
+  position: relative;
+  background-color: #006644;
+  color: var(--white);
+  border-radius: var(--radius-xl);
+  margin-left: 20px;
+  margin-right: 20px;
+  box-shadow: var(--shadow-hard);
+  overflow: hidden;
+}
+
+.process-section .section-title {
+  color: var(--white);
+}
+
+.process-section .text-muted {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.process-grid {
+  position: relative;
+  z-index: 10;
+}
+
+/* Glassmorphic cards for premium dark flow integration */
+.process-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 40px 36px;
+  transition: var(--transition-smooth);
+  position: relative;
+}
+
+.process-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+}
+
+.process-number {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.04);
+  line-height: 1;
+}
+
+.process-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+  font-size: 1.3rem;
+  margin-bottom: 24px;
+  transition: var(--transition-smooth);
+}
+
+.process-card:hover .process-card-icon {
+  background-color: var(--white);
+  color: var(--primary);
+}
+
+.process-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  color: var(--white);
+}
+
+.process-card p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+/* Step 3 Accent: a quiet white layer keeps the green/white icon system intact */
+.process-card.accent-step {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.process-card.accent-step:hover {
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.process-card.accent-step .process-card-icon {
+  background-color: var(--white);
+  color: var(--primary);
+}
+
+.process-card.accent-step .process-number {
+  color: rgba(255, 255, 255, 0.08);
+}
+

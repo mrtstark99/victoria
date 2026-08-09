@@ -1,8 +1,37 @@
+document.documentElement.classList.add('js');
+
 /**
  * VICTORIA HOMEPAGE DEMO — JAVASCRIPT FUNCTIONS
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  const toasts = document.querySelectorAll('[data-toast]');
+  toasts.forEach((toast) => {
+    let dismissTimer;
+    let startedAt = Date.now();
+    let remaining;
+    const dismiss = () => {
+      if (toast.classList.contains('is-hiding')) return;
+      toast.classList.add('is-hiding');
+      window.setTimeout(() => toast.remove(), 280);
+    };
+    const closeButton = toast.querySelector('[data-toast-close]');
+    if (closeButton) closeButton.addEventListener('click', dismiss);
+    const duration = Number(toast.dataset.toastDuration || 5200);
+    remaining = duration;
+    dismissTimer = window.setTimeout(dismiss, duration);
+    toast.addEventListener('mouseenter', () => {
+      window.clearTimeout(dismissTimer);
+      remaining -= Date.now() - startedAt;
+      toast.classList.add('is-paused');
+    });
+    toast.addEventListener('mouseleave', () => {
+      startedAt = Date.now();
+      toast.classList.remove('is-paused');
+      dismissTimer = window.setTimeout(dismiss, Math.max(remaining, 0));
+    });
+  });
+
   // ==========================================
   // 1. STICKY HEADER SCROLL EFFECT
   // ==========================================
@@ -28,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleMenu = () => {
       menuToggle.classList.toggle('active');
       mobileOverlay.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', mobileOverlay.classList.contains('active'));
       document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : '';
     };
 
@@ -37,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
       link.addEventListener('click', () => {
         menuToggle.classList.remove('active');
         mobileOverlay.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       });
     });

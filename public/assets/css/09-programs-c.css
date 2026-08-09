@@ -1,0 +1,46 @@
+﻿.program-link i {
+  transition: transform 0.2s ease;
+}
+
+.program-card:hover .program-link i {
+  transform: translateX(4px);
+}
+
+.program-card:hover .program-link {
+  color: var(--primary-hover);
+}
+
+.program-card:nth-child(even) .program-link {
+  color: var(--accent);
+}
+
+.program-card:nth-child(even):hover .program-link {
+  color: var(--accent-hover);
+}
+
+/* Card 3 (Tokutei) - Royal Blue highlights */
+.program-card:nth-child(3) .program-tag {
+  color: var(--secondary);
+}
+
+.program-card:nth-child(3) .program-icon-box {
+  background-color: var(--primary-light);
+  color: var(--primary);
+}
+
+.program-card:nth-child(3):hover h3 {
+  color: var(--secondary);
+}
+
+.program-card:nth-child(3) .program-meta i {
+  color: var(--primary);
+}
+
+.program-card:nth-child(3) .program-link {
+  color: var(--secondary);
+}
+
+.program-card:nth-child(3):hover .program-link {
+  color: var(--secondary-hover);
+}
+
