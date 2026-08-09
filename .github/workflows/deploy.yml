@@ -51,6 +51,7 @@ jobs:
             --exclude='database/*.sqlite' \
             --exclude='database/*.sqlite-shm' \
             --exclude='database/*.sqlite-wal' \
+            --exclude='database/*.log' \
             ./ brhub-web:/www/wwwroot/victoria.dev-br.xyz/
 
       - name: Configure Nginx and PHP runtime
@@ -169,6 +170,8 @@ jobs:
             echo 'Production returned an empty or invalid HTML response.'
             ssh brhub-web \
               "sudo tail -n 100 /www/wwwlogs/victoria.dev-br.xyz.error.log 2>/dev/null || true"
+            ssh brhub-web \
+              "sudo tail -n 100 /www/wwwroot/victoria.dev-br.xyz/database/php-error.log 2>/dev/null || true"
             ssh brhub-web '
               set +e
               nginx_conf=$(sudo grep -RIl --include="*.conf" "server_name[^;]*victoria.dev-br.xyz" \

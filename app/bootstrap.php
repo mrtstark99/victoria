@@ -8,6 +8,9 @@ use App\Core\Security;
 
 $config = require dirname(__DIR__) . '/config/app.php';
 
+ini_set('log_errors', '1');
+ini_set('error_log', dirname(__DIR__) . '/database/php-error.log');
+
 spl_autoload_register(static function (string $class): void {
     $prefix = 'App\\';
     if (!str_starts_with($class, $prefix)) {
