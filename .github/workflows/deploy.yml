@@ -28,10 +28,17 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           cat <<EOF > ~/.ssh/config
-          Host brhub-web
-            HostName ssh.bright-tech.xyz
+          Host brhub-services
+            HostName ssh.dev-br.xyz
             User stark
             ProxyCommand cloudflared access ssh --hostname %h
+            IdentityFile ~/.ssh/id_ed25519
+            StrictHostKeyChecking no
+
+          Host brhub-web
+            HostName 192.168.0.112
+            User stark
+            ProxyJump brhub-services
             IdentityFile ~/.ssh/id_ed25519
             StrictHostKeyChecking no
           EOF
