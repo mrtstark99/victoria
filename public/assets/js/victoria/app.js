@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
       menuToggle.setAttribute('aria-label', 'Mở menu');
       mobileOverlay.setAttribute('aria-hidden', 'true');
       mobileOverlay.setAttribute('inert', '');
-      document.body.style.overflow = '';
     };
 
     const toggleMenu = () => {
@@ -78,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
       menuToggle.setAttribute('aria-label', 'Đóng menu');
       mobileOverlay.setAttribute('aria-hidden', 'false');
       mobileOverlay.removeAttribute('inert');
-      document.body.style.overflow = 'hidden';
     };
 
     menuToggle.addEventListener('click', toggleMenu);

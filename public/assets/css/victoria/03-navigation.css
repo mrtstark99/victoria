@@ -46,8 +46,11 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: 24px;
-  overflow: hidden;
-  overscroll-behavior: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
   transform: translateX(100%);
   transition: var(--transition-smooth);
 }
@@ -57,15 +60,10 @@
 }
 
 .mobile-nav-list {
-  flex: 1 1 auto;
-  min-height: 0;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
 }
 
 .mobile-nav-link {

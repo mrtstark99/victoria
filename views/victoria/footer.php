@@ -63,7 +63,8 @@ if ($customFooterCode !== '') echo $customFooterCode . "\n";
   </div>
   <button class="victoria-chat__trigger" id="victoria-chat-trigger" type="button" aria-label="Mở chat hỗ trợ" aria-expanded="false" aria-controls="victoria-chat-links"><i class="bi bi-chat-dots-fill victoria-chat__open" aria-hidden="true"></i><i class="bi bi-x-lg victoria-chat__close" aria-hidden="true"></i></button>
 </aside>
-<script src="/assets/js/victoria/app.js" defer></script>
+<?php $victoriaAppScript = APP_ROOT . '/public/assets/js/victoria/app.js'; ?>
+<script src="/assets/js/victoria/app.js?v=<?= is_file($victoriaAppScript) ? filemtime($victoriaAppScript) : '1' ?>" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
   document.querySelectorAll('[data-contact-form]').forEach(function(form){
