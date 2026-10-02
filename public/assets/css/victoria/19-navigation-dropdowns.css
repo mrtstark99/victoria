@@ -68,6 +68,27 @@ body.victoria-home-page .hero-title { font-weight: 900; }
 body.victoria-home-page .hero-title span { font-weight: 900; }
 body.victoria-home-page { background-color: #fff !important; }
 
+/* Keep the mobile header in document flow so it cannot cover the first section. */
+@media (max-width: 991px) {
+  body.victoria-site .header-wrapper {
+    position: sticky;
+    top: 0;
+  }
+
+  body.victoria-home-page .hero {
+    padding-top: 60px;
+  }
+
+  body.victoria-static-page .be-page-hero {
+    padding-top: 1rem;
+  }
+
+  body.victoria-static-page .be-static-page > section:first-child.pt-20,
+  body.victoria-static-page > main.pt-20 {
+    padding-top: 1rem;
+  }
+}
+
 /* Article pages use white foreground content on Victoria green surfaces. */
 body.victoria-post-page .post-cat-badge,
 body.victoria-post-page .post-content-body .btn-primary,
