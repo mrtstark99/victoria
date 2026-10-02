@@ -70,7 +70,7 @@
   position: fixed;
   inset-x: 0;
   top: 0;
-  z-index: 100;
+  z-index: 120;
   width: 100%;
   height: var(--header-height);
   transition: var(--transition-smooth);
@@ -111,6 +111,19 @@
 
 .header-wrapper.scrolled .menu-toggle span {
   background-color: #fff;
+}
+
+.header-wrapper.menu-open {
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.header-wrapper.menu-open .logo-img {
+  filter: none;
+}
+
+.header-wrapper.menu-open .menu-toggle span {
+  background-color: var(--primary);
 }
 
 .header-container {

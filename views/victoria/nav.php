@@ -13,7 +13,6 @@ $victoriaNavGroups = [
         ['label' => 'Liên hệ Victoria', 'url' => '/#contact'],
     ]],
     ['label' => 'Tin tức', 'url' => '/blog', 'children' => []],
-    ['label' => 'Hỏi đáp', 'url' => '/qa', 'children' => []],
     ['label' => 'Về Victoria', 'url' => '/about', 'children' => [
         ['label' => 'Giới thiệu', 'url' => '/about'],
         ['label' => 'Trường đối tác', 'url' => '/schools'],
@@ -36,7 +35,7 @@ $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
     <div class="header-right"><a href="/#contact" class="btn btn-primary header-cta">Tư vấn miễn phí</a><button class="menu-toggle" id="menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
   </div>
 </header>
-<div class="mobile-overlay" id="mobile-overlay">
+<div class="mobile-overlay" id="mobile-overlay" aria-hidden="true" inert>
   <nav class="mobile-nav-list" aria-label="Điều hướng di động">
     <?php foreach ($victoriaNavGroups as $group): ?><div class="mobile-nav-group"><a href="<?= htmlspecialchars($group['url'], ENT_QUOTES, 'UTF-8') ?>" class="mobile-nav-link"><?= htmlspecialchars($group['label'], ENT_QUOTES, 'UTF-8') ?></a><?php foreach ($group['children'] as $child): ?><a href="<?= htmlspecialchars($child['url'], ENT_QUOTES, 'UTF-8') ?>" class="mobile-nav-child"><?= htmlspecialchars($child['label'], ENT_QUOTES, 'UTF-8') ?></a><?php endforeach; ?></div><?php endforeach; ?>
     <a href="<?= isLoggedIn() ? '/admin' : '/login' ?>" class="mobile-nav-link"><?= isLoggedIn() ? 'Quản trị' : 'Đăng nhập' ?></a>

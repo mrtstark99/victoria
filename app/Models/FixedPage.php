@@ -3,7 +3,7 @@
 namespace Models;
 
 class FixedPage {
-    public const SLUGS = ['about', 'schools', 'courses', 'process', 'documents', 'consultation', 'qa'];
+    public const SLUGS = ['about', 'schools', 'courses', 'process', 'documents', 'consultation'];
     public static function get(string $slug): ?array {
         if (!in_array($slug, self::SLUGS, true)) return null;
         $stmt = \Database::getInstance()->prepare('SELECT setting_value FROM settings WHERE setting_key = ? LIMIT 1');

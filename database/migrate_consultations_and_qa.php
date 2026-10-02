@@ -1,14 +1,14 @@
 <?php
 /**
  * @file database/migrate_consultations_and_qa.php
- * @description Migration script creating consultation bookings, slots, community groups, and QA schema.
+ * @description Migration script creating consultation bookings, slots, and community groups.
  *
  * Layer:
  * - Database / Migration
  *
  * Responsibilities:
- * - Execute DDL for consultation_slots, consultation_bookings, community_groups, qa_questions, qa_answers.
- * - Seed initial default community groups and sample Q&A if tables are empty.
+ * - Execute DDL for consultation_slots, consultation_bookings, and community_groups.
+ * - Seed initial default consultation slots and community groups if their tables are empty.
  *
  * Security:
  * - Parameterized inserts and schema isolation.
@@ -25,7 +25,7 @@
 require_once dirname(__DIR__) . '/config/config.php';
 require_once dirname(__DIR__) . '/config/database.php';
 
-echo "==> Running Bright Education Consultation & Q&A Migration...\n";
+echo "==> Running Victoria Consultation Migration...\n";
 
 $db = Database::getInstance();
 
@@ -94,36 +94,6 @@ CREATE INDEX IF NOT EXISTS idx_community_groups_status   ON community_groups(sta
 CREATE INDEX IF NOT EXISTS idx_community_groups_platform ON community_groups(platform);
 CREATE INDEX IF NOT EXISTS idx_community_groups_order    ON community_groups(display_order);
 
-CREATE TABLE IF NOT EXISTS qa_questions (
-    id             INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id        INTEGER,
-    author_name    TEXT NOT NULL,
-    content        TEXT NOT NULL,
-    likes_count    INTEGER NOT NULL DEFAULT 0,
-    status         TEXT NOT NULL DEFAULT 'active' CHECK(status IN ('active','hidden')),
-    image          TEXT,
-    created_at     TEXT NOT NULL DEFAULT (datetime('now','localtime')),
-    updated_at     TEXT NOT NULL DEFAULT (datetime('now','localtime')),
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
-);
-CREATE INDEX IF NOT EXISTS idx_qa_questions_status ON qa_questions(status);
-CREATE INDEX IF NOT EXISTS idx_qa_questions_created ON qa_questions(created_at);
-
-CREATE TABLE IF NOT EXISTS qa_answers (
-    id             INTEGER PRIMARY KEY AUTOINCREMENT,
-    question_id    INTEGER NOT NULL,
-    user_id        INTEGER,
-    author_name    TEXT NOT NULL,
-    content        TEXT NOT NULL,
-    likes_count    INTEGER NOT NULL DEFAULT 0,
-    status         TEXT NOT NULL DEFAULT 'active' CHECK(status IN ('active','hidden')),
-    created_at     TEXT NOT NULL DEFAULT (datetime('now','localtime')),
-    updated_at     TEXT NOT NULL DEFAULT (datetime('now','localtime')),
-    FOREIGN KEY (question_id) REFERENCES qa_questions(id) ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
-);
-CREATE INDEX IF NOT EXISTS idx_qa_answers_question ON qa_answers(question_id);
-CREATE INDEX IF NOT EXISTS idx_qa_answers_status ON qa_answers(status);
 ");
 
 // Check if slots exist

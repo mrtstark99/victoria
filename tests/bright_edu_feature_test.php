@@ -113,7 +113,6 @@ $expectedViews = [
     'views/blog/documents.php',
     'views/blog/cost.php',
     'views/blog/consultation.php',
-    'views/blog/qa.php',
     'views/admin/services.php',
     'views/admin/service_form.php',
     'views/admin/contacts.php'

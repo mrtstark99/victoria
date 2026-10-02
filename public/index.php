@@ -88,8 +88,6 @@ try {
         (new Controllers\PageController())->cost();
     } elseif ($path === '/consultation') {
         (new Controllers\PageController())->consultation();
-    } elseif ($path === '/qa') {
-        (new Controllers\PageController())->qa();
     } elseif ($path === '/sitemap.xml') {
         (new Controllers\SitemapController())->sitemap();
     } elseif ($path === '/robots.txt') {

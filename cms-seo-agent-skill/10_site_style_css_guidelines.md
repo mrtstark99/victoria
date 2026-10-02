@@ -14,7 +14,7 @@ Tài liệu này áp dụng khi Agent được giao sửa mã giao diện/CSS. C
 
 | Route | View/controller | CSS/layout cần đọc trước khi sửa |
 | --- | --- | --- |
-| `/about`, `/schools`, `/courses`, `/process`, `/documents`, `/consultation`, `/qa` | `PageController` và `views/blog/{slug}.php`; có thể được thay bằng nội dung `FixedPage` | `public/assets/css/static_pages.css`, `views/layouts/partials/head_meta.php`; từng view có thể dùng Tailwind class riêng |
+| `/about`, `/schools`, `/courses`, `/process`, `/documents`, `/consultation` | `PageController` và `views/blog/{slug}.php`; có thể được thay bằng nội dung `FixedPage` | `public/assets/css/static_pages.css`, `views/layouts/partials/head_meta.php`; từng view có thể dùng Tailwind class riêng |
 | `/page/{slug}` | `BlogController::showPage()` và `views/blog/page.php` | `static_pages.css`, partial `page_hero.php`, `head_meta.php` |
 | `/services`, `/services/{slug}` | `ServiceController` và các view `views/blog/services.php`, `service_detail.php` | CSS thực tế được nạp qua `page_css` trong `head_meta.php`, cộng stylesheet thành phần liên quan |
 | `/cost` | `ServiceController` và `views/blog/cost.php` | CSS thực tế được nạp qua `page_css` trong `head_meta.php` |

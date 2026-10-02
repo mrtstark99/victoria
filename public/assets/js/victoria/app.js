@@ -55,22 +55,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
   if (menuToggle && mobileOverlay) {
+    const closeMenu = () => {
+      menuToggle.classList.remove('active');
+      mobileOverlay.classList.remove('active');
+      if (header) header.classList.remove('menu-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Mở menu');
+      mobileOverlay.setAttribute('aria-hidden', 'true');
+      mobileOverlay.setAttribute('inert', '');
+      document.body.style.overflow = '';
+    };
+
     const toggleMenu = () => {
-      menuToggle.classList.toggle('active');
-      mobileOverlay.classList.toggle('active');
-      menuToggle.setAttribute('aria-expanded', mobileOverlay.classList.contains('active'));
-      document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : '';
+      if (mobileOverlay.classList.contains('active')) {
+        closeMenu();
+        return;
+      }
+      menuToggle.classList.add('active');
+      mobileOverlay.classList.add('active');
+      if (header) header.classList.add('menu-open');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      menuToggle.setAttribute('aria-label', 'Đóng menu');
+      mobileOverlay.setAttribute('aria-hidden', 'false');
+      mobileOverlay.removeAttribute('inert');
+      document.body.style.overflow = 'hidden';
     };
 
     menuToggle.addEventListener('click', toggleMenu);
-
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        menuToggle.classList.remove('active');
-        mobileOverlay.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      });
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && mobileOverlay.classList.contains('active')) closeMenu();
     });
   }
 

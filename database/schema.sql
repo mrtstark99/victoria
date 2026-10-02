@@ -352,29 +352,3 @@ CREATE TABLE IF NOT EXISTS community_groups (
     created_at     TEXT NOT NULL DEFAULT (datetime('now','localtime')),
     updated_at     TEXT NOT NULL DEFAULT (datetime('now','localtime'))
 );
-
-CREATE TABLE IF NOT EXISTS qa_questions (
-    id             INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id        INTEGER,
-    author_name    TEXT NOT NULL,
-    content        TEXT NOT NULL,
-    likes_count    INTEGER NOT NULL DEFAULT 0,
-    status         TEXT NOT NULL DEFAULT 'active' CHECK(status IN ('active','hidden')),
-    created_at     TEXT NOT NULL DEFAULT (datetime('now','localtime')),
-    updated_at     TEXT NOT NULL DEFAULT (datetime('now','localtime')),
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
-);
-
-CREATE TABLE IF NOT EXISTS qa_answers (
-    id             INTEGER PRIMARY KEY AUTOINCREMENT,
-    question_id    INTEGER NOT NULL,
-    user_id        INTEGER,
-    author_name    TEXT NOT NULL,
-    content        TEXT NOT NULL,
-    likes_count    INTEGER NOT NULL DEFAULT 0,
-    status         TEXT NOT NULL DEFAULT 'active' CHECK(status IN ('active','hidden')),
-    created_at     TEXT NOT NULL DEFAULT (datetime('now','localtime')),
-    updated_at     TEXT NOT NULL DEFAULT (datetime('now','localtime')),
-    FOREIGN KEY (question_id) REFERENCES qa_questions(id) ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
-);

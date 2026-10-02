@@ -20,7 +20,6 @@ class AdminNavigationController {
             ['label' => 'Hồ sơ', 'url' => '/documents', 'target' => '_self', 'is_active' => true],
             ['label' => 'Chi phí', 'url' => '/cost', 'target' => '_self', 'is_active' => true],
             ['label' => 'Tư vấn Zoom', 'url' => '/consultation', 'target' => '_self', 'is_active' => true],
-            ['label' => 'Hỏi đáp', 'url' => '/qa', 'target' => '_self', 'is_active' => true],
             ['label' => 'Tin tức & Cẩm nang', 'url' => '/blog', 'target' => '_self', 'is_active' => true],
             ['label' => 'Liên hệ', 'url' => '/contact', 'target' => '_self', 'is_active' => true]
         ];
@@ -31,7 +30,6 @@ class AdminNavigationController {
                 ['label' => 'Trang chủ', 'url' => '/'],
                 ['label' => 'Về chúng tôi', 'url' => '/about'],
                 ['label' => 'Hệ thống trường', 'url' => '/schools'],
-                ['label' => 'Hỏi & Đáp', 'url' => '/qa'],
                 ['label' => 'Tin tức & Cẩm nang', 'url' => '/blog'],
                 ['label' => 'Liên hệ', 'url' => '/contact']
             ]
@@ -58,6 +56,7 @@ class AdminNavigationController {
         $rawNav = getSetting('nav_menu_items', null);
         $navItems = is_array($rawNav) ? $rawNav : (is_string($rawNav) && !empty($rawNav) ? json_decode($rawNav, true) : null);
         if (!is_array($navItems)) $navItems = $defaultNav;
+        $navItems = array_values(array_filter($navItems, [self::class, 'isNotQaLink']));
         $legacyNav = [
             ['label' => 'Trang chủ', 'url' => '/', 'target' => '_self', 'is_active' => true],
             ['label' => 'Tối ưu SEO', 'url' => '/category/toi-uu-seo', 'target' => '_self', 'is_active' => true],
@@ -71,6 +70,7 @@ class AdminNavigationController {
         $rawCol2 = getSetting('footer_col2_json', null);
         $footerCol2 = is_array($rawCol2) ? $rawCol2 : (is_string($rawCol2) && !empty($rawCol2) ? json_decode($rawCol2, true) : null);
         if (!is_array($footerCol2)) $footerCol2 = $defaultFooterCol2;
+        $footerCol2['links'] = array_values(array_filter($footerCol2['links'] ?? [], [self::class, 'isNotQaLink']));
         $legacyFooterCol2 = [
             'title' => 'Chuyên Mục',
             'links' => [
@@ -85,6 +85,7 @@ class AdminNavigationController {
         $rawCol3 = getSetting('footer_col3_json', null);
         $footerCol3 = is_array($rawCol3) ? $rawCol3 : (is_string($rawCol3) && !empty($rawCol3) ? json_decode($rawCol3, true) : null);
         if (!is_array($footerCol3)) $footerCol3 = $defaultFooterCol3;
+        $footerCol3['links'] = array_values(array_filter($footerCol3['links'] ?? [], [self::class, 'isNotQaLink']));
         $legacyFooterCol3 = [
             'title' => 'Thông Tin & Chính Sách',
             'links' => [
@@ -99,6 +100,7 @@ class AdminNavigationController {
         $rawBottom = getSetting('footer_bottom_links', null);
         $bottomLinks = is_array($rawBottom) ? $rawBottom : (is_string($rawBottom) && !empty($rawBottom) ? json_decode($rawBottom, true) : null);
         if (!is_array($bottomLinks)) $bottomLinks = $defaultBottomLinks;
+        $bottomLinks = array_values(array_filter($bottomLinks, [self::class, 'isNotQaLink']));
         $legacyBottomLinks = [
             ['label' => 'Trang chủ', 'url' => '/'],
             ['label' => 'Giới thiệu', 'url' => '/page/gioi-thieu'],
@@ -113,6 +115,15 @@ class AdminNavigationController {
             'footer_col3' => $footerCol3,
             'bottom_links' => $bottomLinks
         ];
+    }
+
+    private static function isNotQaLink($item): bool {
+        if (!is_array($item)) return true;
+        $urlPath = parse_url((string)($item['url'] ?? ''), PHP_URL_PATH) ?: '';
+        $label = mb_strtolower(trim((string)($item['label'] ?? '')), 'UTF-8');
+        return rtrim($urlPath, '/') !== '/qa' &&
+            !str_contains($label, 'hỏi đáp') &&
+            !str_contains($label, 'hỏi & đáp');
     }
 
     public function index() {

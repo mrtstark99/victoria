@@ -40,7 +40,7 @@ All code created, modified, or refactored in this repository must comply with th
 - **Layout Modernization**:
   - Re-engineer `views/layouts/header.php`, `navbar.php`, and `mobile_drawer.php`:
     - Glassmorphic sticky header with backdrop blur.
-    - Full navigation with active indicator (`/`, `/services`, `/courses`, `/schools`, `/process`, `/documents`, `/cost`, `/blog`, `/contact`, `/consultation`, `/qa`).
+    - Full navigation with active indicator (`/`, `/services`, `/courses`, `/schools`, `/process`, `/documents`, `/cost`, `/blog`, `/contact`, `/consultation`).
     - CTA button "Tư vấn miễn phí".
     - User account dropdown / profile link.
     - Smooth mobile navigation drawer.
@@ -72,7 +72,7 @@ All code created, modified, or refactored in this repository must comply with th
   - `app/Controllers/AdminContactController.php` (management dashboard at `/admin/contacts`)
   - `views/admin/contacts.php`
 - **Specialized Information Pages**:
-  - Dedicated views for `/about`, `/schools`, `/courses`, `/process`, `/documents`, `/cost`, `/consultation`, `/qa`.
+  - Dedicated views for `/about`, `/schools`, `/courses`, `/process`, `/documents`, `/cost`, `/consultation`.
 
 ### Milestone 5: Routing & URL Architecture
 - `/` -> Homepage Landing Page (Corporate + Interactive Sections + Blog Preview)
@@ -137,6 +137,5 @@ All 15 endpoints verified live on `https://blog.dev-br.xyz`:
 - `https://blog.dev-br.xyz/documents` (HTTP 200, 39 KB - Application documents)
 - `https://blog.dev-br.xyz/cost` (HTTP 200, 48 KB - Cost & living estimator)
 - `https://blog.dev-br.xyz/consultation` (HTTP 200, 51 KB - Zoom consultation booking & schedule)
-- `https://blog.dev-br.xyz/qa` (HTTP 200, 80 KB - Community Q&A & support groups)
 - `https://blog.dev-br.xyz/sitemap.xml` (HTTP 200, 3.7 KB - Dynamic XML sitemap)
 - `https://blog.dev-br.xyz/api/agent.php` (HTTP 401 - AI Agent endpoint active and guarded by Bearer token auth)

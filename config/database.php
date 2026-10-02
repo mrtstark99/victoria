@@ -229,6 +229,12 @@ class Database {
                 }
 
             }
+
+            $serviceColumns = $this->pdo->query('PRAGMA table_info(services)')->fetchAll(PDO::FETCH_COLUMN, 1);
+            if (!in_array('packages_json', $serviceColumns, true)) {
+                $this->pdo->exec("ALTER TABLE services ADD COLUMN packages_json TEXT NOT NULL DEFAULT '[]'");
+            }
+            $this->pdo->exec("CREATE TABLE IF NOT EXISTS service_slug_redirects (old_slug TEXT PRIMARY KEY, service_id INTEGER NOT NULL, created_at TEXT NOT NULL DEFAULT (datetime('now','localtime')), FOREIGN KEY (service_id) REFERENCES services(id) ON DELETE CASCADE)");
         } catch (PDOException $e) {
             die("Database connection failed: " . $e->getMessage());
         }
@@ -250,7 +256,6 @@ class Database {
         if (file_exists($schemaFile)) {
             $sql = file_get_contents($schemaFile);
             $this->pdo->exec($sql);
-            $this->pdo->exec("CREATE TABLE IF NOT EXISTS service_slug_redirects (old_slug TEXT PRIMARY KEY, service_id INTEGER NOT NULL, created_at TEXT NOT NULL DEFAULT (datetime('now','localtime')), FOREIGN KEY (service_id) REFERENCES services(id) ON DELETE CASCADE)");
             $this->seedDatabase();
         }
     }

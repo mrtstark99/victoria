@@ -107,17 +107,6 @@ class PageController {
         ]);
     }
 
-    /**
-     * Community Q&A Knowledgebase (/qa).
-     */
-    public function qa() {
-        if ($this->renderOverride('qa')) return;
-        view('blog/qa', [
-            'page_title' => 'Hỏi & Đáp Du Học Nhật Bản - Victoria Universal',
-            'meta_description' => 'Cộng đồng giải đáp thắc mắc về điều kiện tuyển sinh, chứng minh tài chính và cuộc sống tại Nhật.'
-        ]);
-    }
-
     private function renderOverride(string $slug): bool {
         $page = \Models\FixedPage::get($slug);
         if ($page === null) return false;

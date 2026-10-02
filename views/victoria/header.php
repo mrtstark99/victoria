@@ -1,7 +1,7 @@
 <?php
 $victoriaNav = [
     ['Trang chủ', '/'], ['Chương trình', '/#chuong-trinh'], ['Quy trình', '/#quy-trinh'],
-    ['Dịch vụ', '/services'], ['Blog', '/blog'], ['Hỏi đáp', '/qa'], ['Liên hệ', '/#lien-he']
+    ['Dịch vụ', '/services'], ['Blog', '/blog'], ['Liên hệ', '/#lien-he']
 ];
 include APP_ROOT . '/views/layouts/partials/head_meta.php';
 ?>
@@ -20,7 +20,7 @@ include APP_ROOT . '/views/layouts/partials/head_meta.php';
     </div>
   </div>
 </header>
-<div class="mobile-overlay" id="mobile-overlay">
+<div class="mobile-overlay" id="mobile-overlay" aria-hidden="true" inert>
   <nav class="mobile-nav-list" aria-label="Điều hướng di động">
     <?php foreach ($victoriaNav as [$label, $url]): ?><a href="<?= htmlspecialchars($url, ENT_QUOTES, 'UTF-8') ?>" class="mobile-nav-link"><?= htmlspecialchars($label, ENT_QUOTES, 'UTF-8') ?></a><?php endforeach; ?>
     <a href="<?= isLoggedIn() ? '/admin' : '/login' ?>" class="mobile-nav-link"><?= isLoggedIn() ? 'Quản trị' : 'Đăng nhập' ?></a>

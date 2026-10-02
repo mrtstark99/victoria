@@ -56,11 +56,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://localhost:8080/qa</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>http://localhost:8080/page/gioi-thieu</loc>
     <lastmod>2026-08-20T00:26:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
