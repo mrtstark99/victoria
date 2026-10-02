@@ -36,7 +36,7 @@ jobs:
             StrictHostKeyChecking no
 
           Host brhub-web
-            HostName 192.168.0.112
+            HostName 192.168.0.110
             User stark
             ProxyJump brhub-services
             IdentityFile ~/.ssh/id_ed25519
