@@ -205,6 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (section.getBoundingClientRect().top + window.scrollY <= cursor) activeIndex = index;
       });
       const activeItem = spyItems[activeIndex];
+      const isOnGreenBackground = ['services', 'contact'].includes(activeItem.dataset.target);
+      spyContainer.classList.toggle('is-on-green', isOnGreenBackground);
       const offset = spyContainer.clientHeight / 2 - activeItem.offsetTop - activeItem.clientHeight / 2;
       spyTrack.style.transform = `translateY(${offset}px)`;
       spyItems.forEach((item, index) => {

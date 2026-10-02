@@ -48,6 +48,16 @@
 .victoria-scrollspy__item.is-near { opacity: .65; }
 .victoria-scrollspy__item.is-far { opacity: .3; filter: blur(1px); }
 
+.victoria-scrollspy.is-on-green .victoria-scrollspy__item { color: rgba(255, 255, 255, .78); }
+.victoria-scrollspy.is-on-green .victoria-scrollspy__item.is-active { color: #fff; }
+.victoria-scrollspy.is-on-green .victoria-scrollspy__item.is-near { opacity: .9; }
+.victoria-scrollspy.is-on-green .victoria-scrollspy__item.is-far { opacity: .65; filter: none; }
+.victoria-scrollspy.is-on-green .victoria-scrollspy__marker {
+  border-color: rgba(255, 255, 255, .7);
+  background: rgba(255, 255, 255, .16);
+}
+.victoria-scrollspy.is-on-green .victoria-scrollspy__marker span { background: #fff; }
+
 .victoria-scrollspy__marker {
   position: absolute;
   top: 50%;
