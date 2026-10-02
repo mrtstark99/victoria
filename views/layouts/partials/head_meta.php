@@ -139,7 +139,9 @@
       $pageStyleName = $page_css === 'category' ? 'home' : $page_css;
       $pageStyleFile = APP_ROOT . '/public/assets/css/' . $pageStyleName . '.css';
     ?>
-    <link rel="stylesheet" href="/assets/css/<?php echo htmlspecialchars($pageStyleName); ?>.css?v=<?php echo is_file($pageStyleFile) ? filemtime($pageStyleFile) : '1'; ?>">
+    <?php if (is_file($pageStyleFile)): ?>
+    <link rel="stylesheet" href="/assets/css/<?php echo htmlspecialchars($pageStyleName); ?>.css?v=<?php echo filemtime($pageStyleFile); ?>">
+    <?php endif; ?>
       <?php if (in_array($page_css, ['home', 'category'], true)): ?>
         <?php foreach (['hero_spotlight', 'category_pills', 'article_grid_pagination'] as $homeStyle):
           $homeStyleFile = APP_ROOT . '/public/assets/css/home/' . $homeStyle . '.css';
