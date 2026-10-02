@@ -5,7 +5,7 @@
   min-height: 14rem;
   padding: 5rem 0 3.5rem;
   overflow: hidden;
-  background: #0d243e;
+  background: var(--primary);
   color: #fff;
 }
 
@@ -109,7 +109,7 @@
 
 .be-static-page .prose :where(h2, h3, h4),
 .be-fixed-content .prose :where(h2, h3, h4) {
-  color: #0d243e;
+  color: var(--primary);
   line-height: 1.3;
 }
 

@@ -152,7 +152,7 @@ sequenceDiagram
 
 Hệ thống tải trực tiếp các module trong `public/assets/css/post/` kèm cache version, hỗ trợ đầy đủ chế độ Sáng (Light) và Tối (Dark).
 
-Quy tắc trên áp dụng cho **nội dung bài viết**. Khi người dùng yêu cầu chỉnh layout/CSS của một trang, đó là thay đổi mã giao diện, không phải thao tác tạo/sửa nội dung qua API. Agent phải đọc `cms-seo-agent-skill/10_site_style_css_guidelines.md`, lần theo route → controller → view → stylesheet được nạp; giữ palette navy `#0d243e`, nền sáng, Inter/Quicksand, padding nhất quán và responsive. CSS phải giới hạn trong trang/nhóm trang, không vá selector toàn cục hoặc chèn `<style>`/inline CSS vào `content_html`. Các route `/services`, `/cost`, trang tĩnh và `/page/{slug}` dùng view/CSS khác nhau; không đoán file từ tên route.
+Quy tắc trên áp dụng cho **nội dung bài viết**. Khi người dùng yêu cầu chỉnh layout/CSS của một trang, đó là thay đổi mã giao diện, không phải thao tác tạo/sửa nội dung qua API. Agent phải đọc `cms-seo-agent-skill/10_site_style_css_guidelines.md`, lần theo route → controller → view → stylesheet được nạp; giữ palette xanh Victoria (`--primary: #006644`, hover `#004F34`), nền sáng, Inter/Quicksand, padding nhất quán và responsive. CSS phải giới hạn trong trang/nhóm trang, không vá selector toàn cục hoặc chèn `<style>`/inline CSS vào `content_html`. Các route `/services`, `/cost`, trang tĩnh và `/page/{slug}` dùng view/CSS khác nhau; không đoán file từ tên route.
 
 > [!IMPORTANT]
 > **AI Agent BẮT BUỘC đọc quy ước bài viết và danh mục UI Elements từ API, KHÔNG đọc file `.md` tĩnh:**

@@ -13,8 +13,8 @@
           @keyframes wizFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
           .calc-item input:checked + .calc-box {
-            border-color: var(--color-primary, #0d243e);
-            background-color: rgba(13, 36, 62, 0.04);
+            border-color: var(--primary);
+            background-color: rgba(0, 102, 68, 0.04);
           }
           .calc-item input:checked + .calc-box .radio-dot {
             transform: scale(1);
@@ -603,7 +603,7 @@
 
               document.querySelectorAll('[data-pip]').forEach(pip => {
                 const i = parseInt(pip.dataset.pip);
-                pip.style.backgroundColor = i <= idx ? 'var(--color-primary, #0d243e)' : '#e2e8f0';
+              pip.style.backgroundColor = i <= idx ? 'var(--primary)' : '#e2e8f0';
                 pip.style.width = i === idx ? '2rem' : (i < idx ? '1.5rem' : '1rem');
               });
 

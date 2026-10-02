@@ -132,7 +132,7 @@
   border: 1px solid var(--border);
   font-size: 0.725rem;
   font-weight: 600;
-  color: var(--muted-foreground);
+  color: #fff;
 }
 
 .post-main-title {
@@ -231,7 +231,7 @@
   border-radius: 50%;
   background-color: var(--secondary);
   border: 1px solid var(--border);
-  color: var(--foreground);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;

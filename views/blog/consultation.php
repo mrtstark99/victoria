@@ -439,7 +439,7 @@ document.getElementById('individual-booking-form').addEventListener('submit', fu
 </script>
 
 <style>
-.active-tab { border-color: #0d243e !important; }
+.active-tab { border-color: var(--primary) !important; }
 </style>
 
 <?php include APP_ROOT . '/views/layouts/footer.php'; ?>

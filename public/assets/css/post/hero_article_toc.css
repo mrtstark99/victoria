@@ -67,7 +67,7 @@
 .toc-toggle-indicator {
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--muted-foreground);
+  color: #fff;
   background-color: var(--secondary);
   padding: 0.2rem 0.65rem;
   border-radius: 9999px;

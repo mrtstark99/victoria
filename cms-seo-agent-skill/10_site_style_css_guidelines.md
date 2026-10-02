@@ -4,7 +4,7 @@ Tài liệu này áp dụng khi Agent được giao sửa mã giao diện/CSS. C
 
 ## 1. Nhận diện và token thiết kế
 
-- Màu chủ đạo: navy `#0d243e`; nền nội dung `#f8fafc` hoặc trắng; màu chữ chính `#111827`, chữ phụ `#6b7280`.
+- Màu chủ đạo: xanh Victoria `#006644`, trạng thái hover `#004F34`, nền xanh nhạt `#EBF5F0`; nền nội dung trắng hoặc `#FAFBF9`.
 - Font body: Inter. Tiêu đề: Quicksand.
 - Khung nội dung thông thường tối đa khoảng `80rem` (1280px); gutter khoảng 20px trên mobile, 32px trên desktop.
 - Spacing section co giãn theo kích thước màn hình; tránh tự đặt padding riêng tùy tiện giữa các trang cùng nhóm.

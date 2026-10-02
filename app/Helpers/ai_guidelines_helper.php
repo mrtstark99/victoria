@@ -143,7 +143,7 @@ PROMPT;
 
 ## QUY CHUẨN CSS VÀ GIAO DIỆN WEBSITE (BẮT BUỘC KHI SỬA GIAO DIỆN)
 - Trước khi sửa CSS, xác định đúng route và template trong `cms-seo-agent-skill/10_site_style_css_guidelines.md`; đọc các stylesheet và layout partial thực sự được trang đó nạp. Không suy luận stylesheet chỉ từ tên route.
-- Giữ nhận diện Bright: navy `#0d243e`, nền sáng `#f8fafc`/trắng, chữ body Inter, heading Quicksand. Đồng bộ hero, chiều rộng nội dung tối đa khoảng 80rem, gutter 20px trên mobile và 32px từ desktop, padding section co giãn theo breakpoint.
+- Giữ nhận diện Victoria: xanh chính `#006644`, hover `#004F34`, nền xanh nhạt `#EBF5F0`, chữ body Inter và heading Quicksand. Đồng bộ hero, chiều rộng nội dung tối đa khoảng 80rem, gutter 20px trên mobile và 32px từ desktop, padding section co giãn theo breakpoint.
 - Trang tĩnh `/about`, `/schools`, `/courses`, `/process`, `/documents`, `/consultation` dùng `be-static-page` và `public/assets/css/static_pages.css`; CMS `/page/{slug}` dùng `page.php`, partial `page_hero.php` và cùng stylesheet. Giữ hero đủ chiều cao, có tiêu đề/breadcrumb nhìn thấy được; không cộng thêm top padding ngoài nếu hero đã tự bù header.
 - `/services` và `/cost` là hai khu vực riêng. Trước khi sửa, lần theo controller, view, `page_css` và CSS trong `head_meta.php`; chỉ thêm CSS vào file đúng trang hoặc class có namespace riêng. Không sửa global selector như `body`, `section`, `h1`, `.container` để vá một trang.
 - Không nhúng CSS/JS vào `content_html`, không dùng inline style để thay quy tắc giao diện. Nội dung CMS chỉ dùng HTML đã hỗ trợ/lọc an toàn; thay đổi layout phải nằm trong view/CSS của dự án và cần có yêu cầu sửa mã giao diện.

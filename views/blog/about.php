@@ -30,11 +30,11 @@ $companyDetails = [
 
   <section class="py-14 sm:py-20 lg:py-24">
     <div class="mx-auto max-w-5xl px-5 lg:px-8">
-      <div class="mb-8 rounded-2xl bg-white p-6 shadow-[0_16px_45px_rgba(13,36,62,.08)] sm:p-9">
+      <div class="mb-8 rounded-2xl bg-white p-6 shadow-[0_16px_45px_rgba(0,102,68,.08)] sm:p-9">
         <h2 class="font-display text-2xl font-bold text-primary sm:text-3xl">Công ty TNHH Toàn Cầu Victoria</h2>
         <p class="mt-4 leading-7 text-slate-600">Victoria Universal chuyên tư vấn du học, hỗ trợ giáo dục và tổ chức chương trình trao đổi sinh viên.</p>
       </div>
-      <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_16px_45px_rgba(13,36,62,.08)]">
+      <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_16px_45px_rgba(0,102,68,.08)]">
         <dl class="divide-y divide-slate-200">
           <?php foreach ($companyDetails as $detail): ?>
             <div class="grid gap-2 px-5 py-5 sm:grid-cols-[minmax(190px,.7fr)_1.3fr] sm:gap-6 sm:px-8">

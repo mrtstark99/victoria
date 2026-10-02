@@ -64,8 +64,8 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 .calc-item input:checked + .calc-box {
-    border-color: var(--color-primary, #0d243e);
-    background-color: rgba(13, 36, 62, 0.04);
+    border-color: var(--primary);
+    background-color: rgba(0, 102, 68, 0.04);
 }
 .calc-item input:checked + .calc-box .radio-dot { transform: scale(1); }
 .calc-item input:checked + .calc-box .calc-details {
@@ -79,10 +79,10 @@
 
 /* =====================================================
    HOME 2026 — COHESIVE BRAND SYSTEM
-   Primary: rgb(13 36 62)
+   Primary: Victoria green (#006644)
    ===================================================== */
 :root {
-    --home-navy: #0d243e;
+    --home-navy: var(--primary);
     --home-navy-2: #183a59;
     --home-blue: #345b7b;
     --home-mist: #eef3f7;
@@ -140,7 +140,7 @@
     border: 1px solid var(--home-line);
     border-radius: 24px;
     background: rgba(255, 255, 255, .96);
-    box-shadow: 0 22px 60px rgba(13, 36, 62, .13);
+    box-shadow: 0 22px 60px rgba(0, 102, 68, .13);
     backdrop-filter: blur(16px);
 }
 .home-trust-item {
@@ -197,25 +197,22 @@
 .home-blog article,
 .home-zoom > div > div:last-child > div {
     border-color: var(--home-line) !important;
-    box-shadow: 0 12px 34px rgba(13, 36, 62, .07) !important;
+    box-shadow: 0 12px 34px rgba(0, 102, 68, .07) !important;
 }
 .home-programs article:hover,
 .home-portal article:hover,
 .home-blog article:hover {
-    box-shadow: 0 24px 54px rgba(13, 36, 62, .14) !important;
+    box-shadow: 0 24px 54px rgba(0, 102, 68, .14) !important;
 }
 
-/* Dark process chapter breaks the repeated light-card rhythm. */
+/* Victoria-green process chapter breaks the repeated light-card rhythm. */
 .home-process {
     margin: 0 20px;
     border-radius: 44px;
-    background:
-        radial-gradient(circle at 12% 16%, rgba(107, 146, 175, .22), transparent 28%),
-        radial-gradient(circle at 90% 90%, rgba(52, 91, 123, .32), transparent 30%),
-        var(--home-navy) !important;
-    box-shadow: 0 28px 70px rgba(13, 36, 62, .18);
+    background: #006644 !important;
+    box-shadow: 0 28px 70px rgba(0, 102, 68, .18);
 }
-.home-process .home-kicker { color: #9bb7ca; }
+.home-process .home-kicker { color: #C3E2D5; }
 .home-process .home-section-heading h2 { color: #fff !important; }
 .home-process .home-section-heading p { color: #c5d3df !important; }
 .home-process article {
@@ -226,19 +223,19 @@
     background: rgba(255, 255, 255, .97) !important;
 }
 .home-process article.bg-gradient-to-br {
-    background-image: linear-gradient(135deg, #345b7b, #1f4667) !important;
+    background-image: linear-gradient(135deg, #00583B, #004F34) !important;
 }
 .home-process [class*="bg-orange-"],
 .home-process [class*="bg-sky-"],
 .home-process [class*="bg-indigo-"],
 .home-process [class*="bg-emerald-"],
-.home-process [class*="bg-rose-"] { background-color: #e8eef3 !important; }
+.home-process [class*="bg-rose-"] { background-color: #EBF5F0 !important; }
 .home-process [class*="text-orange-"],
 .home-process [class*="text-sky-"],
 .home-process [class*="text-indigo-"],
 .home-process [class*="text-emerald-"],
-.home-process [class*="text-rose-"] { color: var(--home-blue) !important; }
-.home-process article.bg-gradient-to-br [class*="text-orange-"] { color: #dce5ec !important; }
+.home-process [class*="text-rose-"] { color: var(--primary) !important; }
+.home-process article.bg-gradient-to-br [class*="text-orange-"] { color: #C3E2D5 !important; }
 
 .home-portal {
     background:
@@ -269,10 +266,8 @@
 .home-zoom [class*="text-orange-"] { color: var(--home-blue) !important; }
 
 .home-contact {
-    border-top: 8px solid #345b7b;
-    background:
-        radial-gradient(circle at 85% 15%, rgba(107, 146, 175, .2), transparent 28%),
-        linear-gradient(135deg, #091b2f, var(--home-navy) 56%, #183a59) !important;
+    border-top: 8px solid #004F34;
+    background: #006644 !important;
 }
 .home-contact form {
     border: 1px solid rgba(255, 255, 255, .55);

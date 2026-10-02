@@ -39,7 +39,7 @@
   border: 1px solid var(--border);
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--foreground);
+  color: #fff;
   transition: all 0.15s;
 }
 
