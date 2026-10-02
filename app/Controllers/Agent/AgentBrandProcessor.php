@@ -49,6 +49,7 @@ class AgentBrandProcessor {
                     'social_github',
                     'social_linkedin',
                     'social_youtube',
+                    'social_tiktok',
                     'default_meta_description',
                     'default_meta_keywords',
                     'default_og_image',

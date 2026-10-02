@@ -115,6 +115,9 @@ class AgentNavigationProcessor {
                 $this->success([
                     'footer_about_text' => getSetting('footer_about_text', ''),
                     'footer_copyright' => getSetting('footer_copyright', ''),
+                    'company_tax_code' => getSetting('company_tax_code', '0801226400'),
+                    'company_legal_representative' => getSetting('company_legal_representative', 'Bùi Thị Hằng'),
+                    'company_since' => getSetting('company_since', '20/11/2017'),
                     'footer_col2' => $nav['footer_col2'],
                     'footer_col3' => $nav['footer_col3'],
                     'bottom_links' => $nav['bottom_links']
@@ -129,12 +132,27 @@ class AgentNavigationProcessor {
 
                 $updated = [];
                 if (isset($input['footer_about_text'])) {
+                    if (!is_string($input['footer_about_text']) || mb_strlen(trim($input['footer_about_text'])) > 2000) $this->error('Invalid footer_about_text.');
                     updateSetting('footer_about_text', trim($input['footer_about_text']), 'text');
                     $updated['footer_about_text'] = trim($input['footer_about_text']);
                 }
                 if (isset($input['footer_copyright'])) {
+                    if (!is_string($input['footer_copyright']) || mb_strlen(trim($input['footer_copyright'])) > 250) $this->error('Invalid footer_copyright.');
                     updateSetting('footer_copyright', trim($input['footer_copyright']), 'text');
                     $updated['footer_copyright'] = trim($input['footer_copyright']);
+                }
+                foreach ([
+                    'company_tax_code' => 40,
+                    'company_legal_representative' => 120,
+                    'company_since' => 40,
+                ] as $field => $maxLength) {
+                    if (!array_key_exists($field, $input)) continue;
+                    if (!is_string($input[$field]) || mb_strlen(trim(strip_tags($input[$field]))) > $maxLength) {
+                        $this->error('Invalid footer field: ' . $field);
+                    }
+                    $value = trim(strip_tags($input[$field]));
+                    updateSetting($field, $value, 'text');
+                    $updated[$field] = $value;
                 }
                 if (isset($input['footer_col2']) && is_array($input['footer_col2'])) {
                     $col2Title = trim($input['footer_col2']['title'] ?? 'Chuyên Mục');

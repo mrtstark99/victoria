@@ -270,3 +270,20 @@ Authorization: Bearer <TOKEN>
 ```
 
 ```
+
+### Cập nhật nội dung Footer hiển thị trên website:
+`update_footer` hỗ trợ `footer_about_text`, `footer_copyright`, `footer_col2`, `footer_col3`, `bottom_links`, `company_tax_code`, `company_legal_representative` và `company_since`. Các trường doanh nghiệp sẽ được hiển thị trong cột liên hệ của footer.
+
+```http
+POST {{API_ENDPOINT}}?action=update_footer
+Content-Type: application/json
+Authorization: Bearer <TOKEN>
+
+{
+  "footer_about_text": "Victoria Universal đồng hành cùng học viên trên hành trình du học Nhật Bản.",
+  "footer_copyright": "© {year} Victoria Universal. Bảo lưu mọi quyền.",
+  "company_tax_code": "0801226400",
+  "company_legal_representative": "Bùi Thị Hằng",
+  "company_since": "20/11/2017"
+}
+```

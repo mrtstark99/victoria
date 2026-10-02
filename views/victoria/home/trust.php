@@ -1,35 +1,12 @@
 <section class="trust">
-      <div class="container">
-        <div class="trust-card">
-          <div class="trust-item">
-            <div class="trust-icon"><i class="bi bi-people-fill"></i></div>
-            <div class="trust-text">
-              <strong>Tư vấn chuyên sâu 1-1</strong>
-              <small>Thiết lập lộ trình riêng biệt</small>
-            </div>
-          </div>
-          <div class="trust-item">
-            <div class="trust-icon"><i class="bi bi-cash-stack"></i></div>
-            <div class="trust-text">
-              <strong>Chi phí minh bạch</strong>
-              <small>Dự toán cụ thể từng kỳ</small>
-            </div>
-          </div>
-          <div class="trust-item">
-            <div class="trust-icon"><i class="bi bi-file-earmark-check-fill"></i></div>
-            <div class="trust-text">
-              <strong>Hồ sơ chất lượng</strong>
-              <small>Tối ưu tỷ lệ đỗ COE</small>
-            </div>
-          </div>
-          <div class="trust-item">
-            <div class="trust-icon"><i class="bi bi-globe-americas"></i></div>
-            <div class="trust-text">
-              <strong>Đồng hành Việt - Nhật</strong>
-              <small>Hỗ trợ trọn vẹn sau bay</small>
-            </div>
-          </div>
+  <div class="container">
+    <div class="trust-card">
+      <?php foreach (($homeConfig['trust_items'] ?? []) as $item): ?>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="bi <?= htmlspecialchars($item['icon'] ?? 'bi-star', ENT_QUOTES, 'UTF-8') ?>"></i></div>
+          <div class="trust-text"><strong><?= htmlspecialchars($item['title'] ?? '', ENT_QUOTES, 'UTF-8') ?></strong><small><?= htmlspecialchars($item['description'] ?? '', ENT_QUOTES, 'UTF-8') ?></small></div>
         </div>
-      </div>
-    </section>
-
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>

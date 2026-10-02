@@ -1,3 +1,4 @@
+<?php $heroConfig = $homeConfig['hero'] ?? []; ?>
 <section class="hero">
       <img src="/assets/images/sakura_bg.png" class="hero-sakura-bg" alt="" aria-hidden="true" />
       <div class="container hero-container">
@@ -5,17 +6,17 @@
         <div class="hero-content">
           <div class="hero-badge">
             <i class="bi bi-star-fill"></i>
-            <span>5.0 ★ Hệ thống du học & đào tạo chuẩn Nhật Bản</span>
+            <span><?= htmlspecialchars($heroConfig['eyebrow'] ?? '5.0 ★ Hệ thống du học & đào tạo chuẩn Nhật Bản', ENT_QUOTES, 'UTF-8') ?></span>
           </div>
           <h1 class="hero-title">
-            Kiến tạo tương lai du học Nhật Bản cùng <span>Victoria</span>
+            <?= htmlspecialchars($heroConfig['title'] ?? 'Kiến tạo tương lai du học Nhật Bản cùng', ENT_QUOTES, 'UTF-8') ?> <span><?= htmlspecialchars($heroConfig['highlight'] ?? 'Victoria', ENT_QUOTES, 'UTF-8') ?></span>
           </h1>
           <p class="hero-description">
-            Định hướng lộ trình học tập cá nhân hóa, dự toán chi phí minh bạch rõ ràng ngay từ đầu, và sự đồng hành trọn vẹn của đội ngũ chuyên gia trước và sau khi nhập cảnh.
+            <?= htmlspecialchars($heroConfig['description'] ?? 'Định hướng lộ trình học tập cá nhân hóa, dự toán chi phí minh bạch rõ ràng ngay từ đầu, và sự đồng hành trọn vẹn của đội ngũ chuyên gia trước và sau khi nhập cảnh.', ENT_QUOTES, 'UTF-8') ?>
           </p>
           <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary">Đăng ký tư vấn</a>
-            <a href="#programs" class="btn btn-outline">Chương trình học</a>
+            <a href="<?= htmlspecialchars($heroConfig['primary_cta_url'] ?? '#contact', ENT_QUOTES, 'UTF-8') ?>" class="btn btn-primary"><?= htmlspecialchars($heroConfig['primary_cta_label'] ?? 'Đăng ký tư vấn', ENT_QUOTES, 'UTF-8') ?></a>
+            <a href="<?= htmlspecialchars($heroConfig['secondary_cta_url'] ?? '#programs', ENT_QUOTES, 'UTF-8') ?>" class="btn btn-outline"><?= htmlspecialchars($heroConfig['secondary_cta_label'] ?? 'Chương trình học', ENT_QUOTES, 'UTF-8') ?></a>
           </div>
 
           <div class="hero-proof" aria-label="Cam kết đồng hành của Victoria">
@@ -33,7 +34,7 @@
           <div class="hero-shape-bg"></div>
           <div class="morph-glow"></div>
           <div class="hero-image-wrapper">
-            <img src="/assets/images/hero-victoria.jpg" class="hero-image" alt="Du học Nhật Bản Victoria" />
+            <img src="<?= htmlspecialchars($heroConfig['image_url'] ?? '/assets/images/hero-victoria.jpg', ENT_QUOTES, 'UTF-8') ?>" class="hero-image" alt="Du học Nhật Bản Victoria" />
           </div>
 
           <div class="hero-seal" aria-hidden="true">

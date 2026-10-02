@@ -25,7 +25,7 @@ class SitemapController {
 
         // Public routes registered in public/index.php.
         $addUrl('', null, 'daily', '1.0');
-        foreach (['blog', 'services', 'contact', 'about', 'schools', 'courses', 'process', 'documents', 'cost', 'consultation'] as $route) {
+        foreach (['blog', 'services', 'contact', 'about', 'schools', 'courses', 'process', 'documents', 'cost', 'consultation', 'qa'] as $route) {
             $addUrl($route, null, 'monthly', '0.8');
         }
 

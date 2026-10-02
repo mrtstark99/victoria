@@ -107,6 +107,15 @@ class PageController {
         ]);
     }
 
+    /** Frequently asked questions page (/qa). */
+    public function qa() {
+        if ($this->renderOverride('qa')) return;
+        view('blog/qa', [
+            'page_title' => 'Câu Hỏi Thường Gặp - Victoria Universal',
+            'meta_description' => 'Giải đáp các câu hỏi thường gặp về du học Nhật Bản và hồ sơ cùng Victoria Universal.'
+        ]);
+    }
+
     private function renderOverride(string $slug): bool {
         $page = \Models\FixedPage::get($slug);
         if ($page === null) return false;

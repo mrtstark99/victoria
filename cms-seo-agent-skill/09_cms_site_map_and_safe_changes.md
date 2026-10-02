@@ -15,7 +15,7 @@ Khi yêu cầu thay đổi **giao diện/CSS**, không dùng action chỉnh nộ
 | Sửa các mức giá và lựa chọn trong công cụ dự toán trang chủ | Calculator trên `/` | `get_home_calculator` | `update_home_calculator` | `calculator:write` |
 | Tạo/sửa bài viết, bản nháp | `/blog`, trang bài viết | `posts`, `guidelines` | `create_draft`, `update_post` | `posts:draft` |
 | Xuất bản bài viết | Trang bài viết công khai | `posts` | `submit_for_review`, `approve_post`, `publish_post` | `posts:draft` / `posts:publish` theo action |
-| Sửa nội dung trang cố định | `/about`, `/schools`, `/courses`, `/process`, `/documents`, `/consultation` | `get_fixed_page` | `update_fixed_page` | `fixed_pages:write` |
+| Sửa nội dung trang cố định | `/about`, `/schools`, `/courses`, `/process`, `/documents`, `/consultation`, `/qa` | `get_fixed_page` | `update_fixed_page` | `fixed_pages:write` |
 | Tạo/sửa trang CMS tùy biến | `/page/{slug}` | `pages`, `get_page` | `create_page`, `update_page`, `publish_page` | `pages:draft`, `pages:publish` |
 | Sửa menu header, menu di động hoặc footer | Navigation / Footer toàn site | `get_navigation`, `get_footer` | `update_navigation`, `update_footer` | `navigation:write` |
 | Sửa hero, cam kết hoặc section trang chủ | `/` | `get_homepage` | `update_homepage` | `homepage:write` |
