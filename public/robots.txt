@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Allow: /blog/
+Allow: /category/
+Allow: /sitemap.xml
+Disallow: /admin/
+Disallow: /api/
+Disallow: /login
+Disallow: /logout
+
+Sitemap: /sitemap.xml

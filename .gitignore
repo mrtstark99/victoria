@@ -1,7 +1,28 @@
-dist/
-*.tar.gz
+# Environment & Keys
+.env
+.env.*
+database/.secret_key
+database/.initial_credentials
+database/blog.db
+database/blog.db-shm
+database/blog.db-wal
 database/*.sqlite
 database/*.sqlite-shm
 database/*.sqlite-wal
 database/*.log
-.env
+public/uploads/
+
+# Logs & Cache
+error.log
+*.log
+.cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE & Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace

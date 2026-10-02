@@ -1,27 +1,35 @@
-# Victoria Universal PHP
+# Victoria v1
 
-Website PHP 8.2+ dùng SQLite, giao diện được tách thành các thành phần nhỏ và không có tệp mã nguồn nào vượt quá 200 dòng.
+Website PHP 8.2+ cho Victoria Universal. Dự án kết hợp giao diện Victoria với các chức năng CMS, blog, dịch vụ, tư vấn/liên hệ, trang thông tin, quản trị, SEO, analytics và AI Agent của hệ thống hiện tại.
 
-## Chạy dự án
+## Chạy cục bộ
 
-```bash
-php -S localhost:2000 -t public
+Yêu cầu PHP 8.2+ với `pdo_sqlite`, `mbstring` và `curl`.
+
+```powershell
+php -S localhost:8080 -t public
 ```
 
-PHP cần bật extension `pdo_sqlite`. Trên Windows có thể chạy `./serve.ps1`; script sẽ tự nạp extension SQLite nếu bản PHP chưa có `php.ini`.
+Để router áp dụng rewrite cho sitemap và mọi route đẹp trên PHP built-in server:
 
-Mở `http://localhost:2000`. Cơ sở dữ liệu và các bảng được tạo tự động trong `database/victoria.sqlite` ở lần chạy đầu tiên.
+```powershell
+php -S localhost:6000 -t public public/router.php
+```
+
+Mở `http://localhost:8080`. Cơ sở dữ liệu SQLite được khởi tạo tự động trong `database/blog.db`. Không đưa cơ sở dữ liệu, khóa bí mật hoặc thông tin đăng nhập vào Git.
 
 ## Cấu trúc
 
-- `app/Core`: kết nối dữ liệu, xác thực, CSRF và thông báo phiên.
-- `config`: cấu hình ứng dụng.
-- `database`: lược đồ SQLite và tệp dữ liệu cục bộ.
-- `public`: các điểm vào HTTP cùng CSS, JavaScript và hình ảnh công khai.
-- `templates`: layout, thành phần trang chủ và màn hình tài khoản.
+- `app/Controllers`, `app/Models`, `app/Helpers`: chức năng website, CMS và AI Agent.
+- `views/victoria`: giao diện, điều hướng và footer Victoria.
+- `views/blog`, `views/admin`, `views/auth`: trang public và giao diện quản trị.
+- `public/assets/css/victoria`: màu sắc, typography và component lấy từ giao diện mẫu.
+- `database`: schema và migration SQLite.
 
-## Bảo mật
+## Tư vấn
 
-Ứng dụng dùng prepared statements, `password_hash`, session cookie HttpOnly/SameSite, đổi session ID sau đăng nhập, CSRF cho mọi form ghi dữ liệu, CSP/header bảo mật, kiểm tra đầu vào và giới hạn tần suất đăng nhập/form tư vấn.
+Biểu mẫu trang chủ gửi tới `/api/contact` và tiếp tục dùng kiểm tra CSRF, giới hạn gửi, lưu SQLite và màn hình quản lý liên hệ hiện có.
 
-Khi triển khai, đặt document root vào thư mục `public`, bật HTTPS, để `APP_DEBUG=false` và không phục vụ trực tiếp thư mục `database`.
+## Triển khai
+
+Chưa cấu hình máy chủ cho dự án mới. Quy trình triển khai cũ đã được vô hiệu hóa để không ghi nhầm lên máy chủ Bright Education. Cần cấu hình riêng host, document root, bí mật CI và miền của Victoria trước khi triển khai.

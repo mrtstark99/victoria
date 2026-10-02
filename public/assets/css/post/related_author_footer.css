@@ -1,0 +1,320 @@
+/* Post Bottom Tags & Share */
+.post-bottom-tags-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 0;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .post-bottom-tags-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 0;
+    margin-bottom: 3rem;
+  }
+}
+
+.post-tags-list {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.tag-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted-foreground);
+  margin-right: 0.25rem;
+}
+
+.post-tag-pill {
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background-color: var(--secondary);
+  border: 1px solid var(--border);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--foreground);
+  transition: all 0.15s;
+}
+
+.post-tag-pill:hover {
+  background-color: var(--foreground);
+  color: var(--background);
+}
+
+/* Author Profile Box */
+.author-bio-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2.75rem;
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.04);
+}
+
+@media (min-width: 640px) {
+  .author-bio-card {
+    border-radius: 24px;
+    padding: 2rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.75rem;
+    margin-bottom: 3.5rem;
+  }
+}
+
+.author-bio-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--border);
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .author-bio-avatar {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+.author-bio-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.author-bio-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+@media (min-width: 640px) {
+  .author-bio-title {
+    font-size: 1.1rem;
+  }
+}
+
+.author-bio-desc {
+  font-size: 0.85rem;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+}
+
+@media (min-width: 640px) {
+  .author-bio-desc {
+    font-size: 0.875rem;
+  }
+}
+
+/* Related Posts Section (Full Width) */
+.related-posts-section {
+  border-top: 1px solid var(--border);
+  padding-top: 2.75rem;
+  margin-top: 2.75rem;
+}
+
+@media (min-width: 640px) {
+  .related-posts-section {
+    padding-top: 4rem;
+    margin-top: 3.5rem;
+  }
+}
+
+.related-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .related-header {
+    margin-bottom: 2rem;
+  }
+}
+
+.related-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--foreground);
+}
+
+@media (min-width: 640px) {
+  .related-title {
+    font-size: 1.5rem;
+  }
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 600px) {
+  .related-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .related-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.article-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px -6px rgba(0, 0, 0, 0.08);
+  border-color: oklch(from var(--foreground) l c h / 0.2);
+}
+
+.article-card-media {
+  margin-bottom: 1rem;
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background-color: var(--secondary);
+}
+
+.article-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.article-card:hover .article-card-media img {
+  transform: scale(1.06);
+}
+
+.article-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.65rem;
+}
+
+.meta-date {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.article-card-title {
+  font-size: 1.025rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color 0.15s;
+}
+
+.article-card-title:hover {
+  color: var(--muted-foreground);
+}
+
+.article-card-desc {
+  color: var(--muted-foreground);
+  font-size: 0.825rem;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.article-card-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding-top: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.card-read-link {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--foreground);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: gap 0.2s ease;
+}
+
+.card-read-link:hover {
+  gap: 0.45rem;
+}
+
+/* Toast Message */
+.copy-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: var(--foreground);
+  color: var(--background);
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .copy-toast {
+    bottom: 1.5rem;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%) translateY(10px);
+    width: max-content;
+    max-width: 90vw;
+    text-align: center;
+  }
+}
+
+.copy-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+  .copy-toast.show {
+    transform: translateX(-50%) translateY(0);
+  }
+}

@@ -1,0 +1,220 @@
+/* Main Content Area */
+.agent-content-area {
+    min-width: 0;
+}
+
+.agent-tab-panel {
+    display: none;
+}
+
+.agent-tab-panel.active {
+    display: block;
+    animation: panelFadeIn 0.15s ease;
+}
+
+@keyframes panelFadeIn {
+    from { opacity: 0; transform: translateY(3px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Panel Header Card */
+.panel-header-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius, 10px);
+    padding: 1.15rem 1.35rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.panel-header-info {
+    max-width: 650px;
+}
+
+.panel-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--foreground);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.panel-desc {
+    font-size: 0.8rem;
+    color: var(--muted-foreground);
+    margin: 0.25rem 0 0;
+    line-height: 1.45;
+}
+
+.panel-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* Badges */
+.badge-success {
+    background: #f0fdf4;
+    color: #16a34a;
+    border: 1px solid #bbf7d0;
+    font-size: 0.7rem;
+}
+.badge-info {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    font-size: 0.7rem;
+}
+
+/* Highlight Chips */
+.guideline-highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.highlight-chip {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 0.85rem;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+}
+
+.chip-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.chip-content strong {
+    display: block;
+    font-size: 0.825rem;
+    color: var(--foreground);
+    margin-bottom: 0.15rem;
+}
+
+.chip-content span {
+    font-size: 0.725rem;
+    color: var(--muted-foreground);
+    line-height: 1.35;
+    display: block;
+}
+
+/* Code Editor Card */
+.editor-card {
+    padding: 0;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.editor-toolbar {
+    background: var(--secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 0.65rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.editor-title {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--foreground);
+}
+
+.editor-format-badge {
+    font-size: 0.7rem;
+    color: var(--muted-foreground);
+    font-family: ui-monospace, monospace;
+}
+
+.code-editor-textarea {
+    border: none;
+    border-radius: 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.825rem;
+    line-height: 1.55;
+    background: var(--card);
+    color: var(--foreground);
+    padding: 1rem 1.15rem;
+    resize: vertical;
+    tab-size: 2;
+}
+
+.code-editor-textarea:focus {
+    box-shadow: none;
+}
+
+/* Scope Chips */
+.scope-chip {
+    font-size: 0.675rem;
+    font-family: ui-monospace, monospace;
+    background: var(--secondary);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+}
+
+/* UI Showcase Layout */
+.ui-elements-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.ui-group-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--foreground);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.65rem;
+}
+
+.ui-elements-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.85rem;
+}
+
+.ui-element-card {
+    padding: 0.85rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.ui-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.825rem;
+}
+
+.ui-card-preview {
+    background: var(--secondary);
+    border-radius: 6px;
+    padding: 0.75rem;
+}
+
+.btn-xs {
+    padding: 0.2rem 0.45rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+}

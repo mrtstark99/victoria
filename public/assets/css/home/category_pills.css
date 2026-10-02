@@ -1,0 +1,116 @@
+/* Category Filter & Section Navigation */
+.home-section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .home-section-header {
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .home-section-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.home-section-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--foreground);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 640px) {
+  .home-section-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-section-title {
+    font-size: 1.2rem;
+  }
+}
+
+.section-count-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  background-color: var(--secondary);
+  color: var(--muted-foreground);
+}
+
+/* Horizontally scrollable on mobile like modern apps */
+.category-pills-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 4px 2px;
+  max-width: 100%;
+}
+
+.category-pills-row::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .category-pills-row {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+}
+
+.category-pill {
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  background-color: var(--secondary);
+  border: 1px solid var(--border);
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .category-pill {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.8rem;
+  }
+}
+
+.category-pill:hover {
+  color: var(--foreground);
+  transform: translateY(-2px);
+  border-color: var(--foreground);
+}
+
+.category-pill.active {
+  background-color: var(--foreground);
+  color: var(--background);
+  border-color: var(--foreground);
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.12);
+}

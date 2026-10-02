@@ -1,0 +1,110 @@
+.nav-group { position: relative; display: flex; align-items: center; }
+.nav-menu-link { display: inline-flex; align-items: center; }
+.nav-chevron { margin-left: 7px; font-size: .72rem; transition: transform .2s ease; }
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 150;
+  min-width: 230px;
+  padding: 8px 10px 10px;
+  border: 1px solid rgba(0, 102, 68, .12);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 18px 45px rgba(16, 42, 32, .18);
+  pointer-events: none;
+  transform: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .15s ease, visibility 0s linear .15s;
+}
+.nav-group:hover .nav-dropdown,
+.nav-group:focus-within .nav-dropdown { opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition-delay: 0s; }
+.nav-group:hover .nav-chevron,
+.nav-group:focus-within .nav-chevron { transform: rotate(180deg); }
+.nav-dropdown-link { display: block; padding: 11px 13px; border-radius: 9px; color: #18382b; font-size: .9rem; font-weight: 600; }
+.nav-dropdown-link:hover, .nav-dropdown-link:focus { background: #edf5f1; color: #006644; }
+
+body.victoria-static-page .header-wrapper,
+body.victoria-static-page .header-wrapper.scrolled { background: #006644; border-bottom: 1px solid rgba(255,255,255,.16); box-shadow: 0 8px 24px rgba(0,45,30,.12); }
+body.victoria-static-page .header-wrapper .logo-img { filter: brightness(0) invert(1); }
+body.victoria-static-page .header-wrapper .nav-menu-link,
+body.victoria-static-page .header-wrapper .nav-menu-link.active,
+body.victoria-static-page .header-wrapper .nav-menu-link:hover { color: #fff; }
+body.victoria-static-page .header-wrapper .nav-menu-link::after,
+body.victoria-static-page .header-wrapper .header-cta::after,
+body.victoria-static-page .header-wrapper .menu-toggle span { background-color: #fff; }
+body.victoria-static-page .header-wrapper .header-right .header-cta,
+body.victoria-home-page .header-wrapper.scrolled .header-right .header-cta { background: #fff; color: #006644; box-shadow: none; }
+body.victoria-static-page .header-wrapper .header-right .header-cta:hover,
+body.victoria-home-page .header-wrapper.scrolled .header-right .header-cta:hover { background: #edf5f1; color: #004f34; }
+
+.mobile-nav-group { border-bottom: 1px solid var(--border-color); }
+.mobile-nav-group .mobile-nav-link { border-bottom: 0; }
+.mobile-nav-child { display: block; padding: 9px 0 10px 18px; color: #53665d; font-size: .98rem; font-weight: 600; }
+.mobile-nav-child:hover { color: #006644; }
+
+/* Ensure green filled controls on static content retain accessible contrast. */
+body.victoria-static-page .btn-primary,
+body.victoria-static-page .bg-primary,
+body.victoria-static-page .bg-primary-500,
+body.victoria-static-page .bg-primary-600,
+body.victoria-static-page .bg-primary-700,
+body.victoria-static-page .bg-midnight { color: #fff; }
+body.victoria-static-page .btn-primary *,
+body.victoria-static-page .bg-primary *,
+body.victoria-static-page .bg-primary-500 *,
+body.victoria-static-page .bg-primary-600 *,
+body.victoria-static-page .bg-primary-700 *,
+body.victoria-static-page .bg-midnight * { color: inherit; }
+body.victoria-static-page .service-contact-link,
+body.victoria-static-page .service-contact-link * { color: #006644 !important; }
+
+body.victoria-home-page h1,
+body.victoria-home-page h2,
+body.victoria-home-page h3,
+body.victoria-home-page .section-title { font-weight: 800; }
+body.victoria-home-page .hero-title { font-weight: 900; }
+body.victoria-home-page .hero-title span { font-weight: 900; }
+body.victoria-home-page { background-color: #fff !important; }
+
+/* Article pages use white foreground content on Victoria green surfaces. */
+body.victoria-post-page .post-cat-badge,
+body.victoria-post-page .post-content-body .btn-primary,
+body.victoria-post-page .post-content-body .btn-download,
+body.victoria-post-page .sidebar-newsletter-btn,
+body.victoria-post-page .post-content-body .step-number,
+body.victoria-post-page .post-content-body .step-icon,
+body.victoria-post-page .post-content-body .takeaway-icon { color: #fff; }
+body.victoria-post-page .post-cat-badge *,
+body.victoria-post-page .post-content-body .btn-primary *,
+body.victoria-post-page .post-content-body .btn-download *,
+body.victoria-post-page .sidebar-newsletter-btn *,
+body.victoria-post-page .post-content-body .step-number *,
+body.victoria-post-page .post-content-body .step-icon *,
+body.victoria-post-page .post-content-body .takeaway-icon * { color: inherit; }
+body.victoria-post-page :is(
+  [class~="bg-primary"], [class~="bg-primary-600"], [class~="bg-primary-700"], [class~="bg-midnight"],
+  [class~="bg-green-600"], [class~="bg-green-700"],
+  [style*="background:#006644"], [style*="background: #006644"],
+  [style*="background-color:#006644"], [style*="background-color: #006644"],
+  [style*="background:var(--primary)"], [style*="background: var(--primary)"],
+  [style*="background-color:var(--primary)"], [style*="background-color: var(--primary)"]
+) { color: #fff !important; }
+body.victoria-post-page :is(
+  [class~="bg-primary"], [class~="bg-primary-600"], [class~="bg-primary-700"], [class~="bg-midnight"],
+  [class~="bg-green-600"], [class~="bg-green-700"],
+  [style*="background:#006644"], [style*="background: #006644"],
+  [style*="background-color:#006644"], [style*="background-color: #006644"],
+  [style*="background:var(--primary)"], [style*="background: var(--primary)"],
+  [style*="background-color:var(--primary)"], [style*="background-color: var(--primary)"]
+) :is(p, span, strong, b, em, a, button, i, svg, h1, h2, h3, h4, li) { color: #fff !important; }
+body.victoria-post-page .footer,
+body.victoria-post-page .footer .footer-desc,
+body.victoria-post-page .footer .footer-title,
+body.victoria-post-page .footer .footer-link,
+body.victoria-post-page .footer .footer-contact-item,
+body.victoria-post-page .footer .footer-contact-item a,
+body.victoria-post-page .footer .footer-bottom,
+body.victoria-post-page .footer .footer-legal a,
+body.victoria-post-page .footer .social-link { color: #fff; }

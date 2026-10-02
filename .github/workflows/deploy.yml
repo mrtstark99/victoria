@@ -48,6 +48,12 @@ jobs:
           rsync -avz --delete --rsync-path="sudo rsync" --chown=www:www \
             --exclude='.git*' \
             --exclude='.github' \
+            --exclude='.env' \
+            --exclude='error.log' \
+            --exclude='public/uploads/***' \
+            --exclude='database/*.db' \
+            --exclude='database/.secret_key' \
+            --exclude='database/.initial_credentials' \
             --exclude='database/*.sqlite' \
             --exclude='database/*.sqlite-shm' \
             --exclude='database/*.sqlite-wal' \
@@ -93,6 +99,77 @@ jobs:
             root_line=$(sudo grep -nE '^[[:space:]]*root[[:space:]]+' "${nginx_conf}" | head -n 1 | cut -d: -f1)
             sudo sed -i "${root_line}a\\    index index.php index.html index.htm;" "${nginx_conf}"
           fi
+
+          sudo python3 - "${nginx_conf}" <<'PY'
+          from pathlib import Path
+          import re
+          import sys
+
+          path = Path(sys.argv[1])
+          text = path.read_text()
+
+          def matching_brace(source, opening):
+              depth = 0
+              quote = None
+              escaped = False
+              comment = False
+              for offset in range(opening, len(source)):
+                  char = source[offset]
+                  if comment:
+                      if char == "\n":
+                          comment = False
+                      continue
+                  if quote:
+                      if escaped:
+                          escaped = False
+                      elif char == "\\":
+                          escaped = True
+                      elif char == quote:
+                          quote = None
+                      continue
+                  if char in "'\"":
+                      quote = char
+                  elif char == "#":
+                      comment = True
+                  elif char == "{":
+                      depth += 1
+                  elif char == "}":
+                      depth -= 1
+                      if depth == 0:
+                          return offset
+              raise SystemExit("Unclosed Nginx block while enabling front-controller routes.")
+
+          server = None
+          for match in re.finditer(r"(?m)^[ \t]*server[ \t]*\{", text):
+              opening = text.find("{", match.start())
+              closing = matching_brace(text, opening)
+              block = text[match.start():closing + 1]
+              if re.search(r"(?m)^[ \t]*server_name[^;]*victoria\.dev-br\.xyz", block):
+                  server = (opening, closing)
+                  break
+          if server is None:
+              raise SystemExit("Unable to find the Victoria Nginx server block for route setup.")
+
+          server_open, server_close = server
+          server_body = text[server_open + 1:server_close]
+          location = re.search(r"(?m)^[ \t]*location[ \t]+/[ \t]*\{", server_body)
+          route = "try_files $uri $uri/ /index.php?$query_string;"
+          if location:
+              location_open = server_open + 1 + server_body.find("{", location.start())
+              location_close = matching_brace(text, location_open)
+              block = text[location_open + 1:location_close]
+              try_files = re.search(r"(?m)^([ \t]*)try_files[ \t]+[^;]*;", block)
+              if try_files:
+                  indent = try_files.group(1)
+                  block = block[:try_files.start()] + indent + route + block[try_files.end():]
+              else:
+                  block = "\n        " + route + block
+              text = text[:location_open + 1] + block + text[location_close:]
+          else:
+              text = text[:server_close] + "\n    location / {\n        " + route + "\n    }\n" + text[server_close:]
+
+          path.write_text(text)
+          PY
 
           php_include=''
           while IFS= read -r candidate; do
@@ -173,7 +250,7 @@ jobs:
           homepage=$(curl --fail --silent --show-error --retry 5 --retry-delay 2 \
             https://victoria.dev-br.xyz/)
           login=$(curl --fail --silent --show-error \
-            https://victoria.dev-br.xyz/login.php)
+            https://victoria.dev-br.xyz/login)
 
           if ! grep -q '<!DOCTYPE html>' <<<"${homepage}" || \
              ! grep -q '<!DOCTYPE html>' <<<"${login}"; then

@@ -1,0 +1,9 @@
+code, pre, pre code, .post-content code, .post-content pre {
+  background-color: #fff !important;
+  color: #102a20;
+}
+
+.post-content pre, pre {
+  border: 1px solid #e2e8e4;
+  border-radius: 10px;
+}

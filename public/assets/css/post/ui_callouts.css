@@ -1,0 +1,157 @@
+/* 04. Hộp Ghi Chú & Cảnh Báo (Callout Boxes System) */
+.article-content-body .callout {
+  position: relative;
+  border-radius: 16px;
+  padding: 1.25rem 1.45rem;
+  margin: 2rem 0;
+  border: 1px solid var(--border);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (max-width: 640px) {
+  .article-content-body .callout {
+    border-radius: 12px;
+    padding: 1rem 1.15rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+}
+
+.article-content-body .callout .callout-title {
+  font-weight: 800;
+  font-size: 1.025rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.article-content-body .callout p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.article-content-body .callout p + p {
+  margin-top: 0.5rem;
+}
+
+.article-content-body .callout ul {
+  margin: 0.5rem 0 0 1.25rem;
+  padding-left: 0;
+}
+
+.article-content-body .callout li {
+  margin-bottom: 0.35rem;
+  font-size: 0.925rem;
+}
+
+/* 1. Tip Box (Emerald Green) */
+.article-content-body .callout-tip {
+  background: rgba(16, 185, 129, 0.06);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+.article-content-body .callout-tip .callout-title {
+  color: #047857;
+}
+.dark .article-content-body .callout-tip .callout-title {
+  color: #34d399;
+}
+
+/* 2. Warning Box (Amber Orange) */
+.article-content-body .callout-warning {
+  background: rgba(245, 158, 11, 0.07);
+  border-color: rgba(245, 158, 11, 0.28);
+}
+.article-content-body .callout-warning .callout-title {
+  color: #b45309;
+}
+.dark .article-content-body .callout-warning .callout-title {
+  color: #fbbf24;
+}
+
+/* 3. Info Box (Blue / Sky) */
+.article-content-body .callout-info {
+  background: rgba(59, 130, 246, 0.06);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+.article-content-body .callout-info .callout-title {
+  color: #1d4ed8;
+}
+.dark .article-content-body .callout-info .callout-title {
+  color: #60a5fa;
+}
+
+/* 4. Dark Callout */
+.article-content-body .callout-dark {
+  background: #0f172a;
+  color: #cbd5e1;
+  border-radius: 18px;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid #1e293b;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+.article-content-body .callout-dark::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(225, 29, 72, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.article-content-body .callout-dark .callout-title {
+  color: #ffffff;
+}
+.article-content-body .callout-dark p {
+  color: #94a3b8;
+}
+.article-content-body .callout-dark ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.article-content-body .callout-dark li {
+  position: relative;
+  padding-left: 1.6rem;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+.article-content-body .callout-dark li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #e11d48;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.article-content-body .callout-dark li strong {
+  color: #ffffff;
+}
+.dark .article-content-body .callout-dark {
+  background: #020617;
+  border-color: #1e293b;
+}

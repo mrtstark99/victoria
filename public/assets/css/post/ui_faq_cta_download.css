@@ -1,0 +1,258 @@
+/* 11. Câu Hỏi FAQ Đóng Mở (FAQ Accordion) */
+.article-content-body .faq-accordion {
+  margin: 2.25rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.article-content-body details.faq-item {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  background: var(--card);
+  transition: all 0.2s ease;
+}
+
+.article-content-body details.faq-item[open] {
+  border-color: var(--foreground);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.article-content-body details.faq-item summary,
+.article-content-body details.faq-item .faq-question {
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--foreground);
+  user-select: none;
+  line-height: 1.4;
+}
+
+.article-content-body details.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.article-content-body details.faq-item summary::after {
+  content: "▾";
+  font-size: 0.95rem;
+  transition: transform 0.2s ease;
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+}
+
+.article-content-body details.faq-item[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.article-content-body details.faq-item .faq-answer {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--border);
+  color: var(--muted-foreground);
+  font-size: 0.925rem;
+  line-height: 1.65;
+}
+
+.article-content-body details.faq-item .faq-answer p {
+  margin: 0;
+}
+
+.article-content-body details.faq-item .faq-answer p + p {
+  margin-top: 0.5rem;
+}
+
+/* 12. Khối Kêu Gọi Hành Động & Tải Tài Liệu (CTA & Download) */
+.article-content-body .cta-box {
+  background: linear-gradient(135deg, rgba(225, 29, 72, 0.06), rgba(139, 92, 246, 0.08));
+  border: 1px solid rgba(225, 29, 72, 0.25);
+  border-radius: 24px;
+  padding: 2.25rem 2rem;
+  margin: 3rem 0;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .article-content-body .cta-box {
+    border-radius: 18px;
+    padding: 1.5rem 1.15rem;
+    margin: 2rem 0;
+  }
+}
+
+.article-content-body .cta-box .cta-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--foreground);
+  margin: 0 0 0.65rem;
+  line-height: 1.3;
+}
+
+@media (min-width: 640px) {
+  .article-content-body .cta-box .cta-title {
+    font-size: 1.5rem;
+  }
+}
+
+.article-content-body .cta-box .cta-desc {
+  font-size: 0.95rem;
+  color: var(--muted-foreground);
+  margin: 0 auto 1.5rem;
+  max-width: 580px;
+  line-height: 1.6;
+}
+
+/* Download Card */
+.article-content-body .download-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.25rem 1.5rem;
+  margin: 2.25rem 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  flex-wrap: nowrap;
+}
+
+@media (max-width: 640px) {
+  .article-content-body .download-card {
+    border-radius: 14px;
+    padding: 1rem 1.15rem;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+}
+
+.article-content-body .download-icon {
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: #2563eb;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 14px;
+  background: rgba(59, 130, 246, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.article-content-body .download-info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.article-content-body .download-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--foreground);
+  margin-bottom: 0.25rem;
+  line-height: 1.4;
+}
+
+.article-content-body .download-meta {
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.article-content-body .download-card .btn-download {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .article-content-body .download-card .download-info {
+    flex-basis: calc(100% - 4rem);
+  }
+
+  .article-content-body .download-card .btn-download {
+    margin-left: auto;
+  }
+}
+
+/* Button Component within Content */
+.article-content-body .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.75rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.925rem;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+
+.article-content-body .btn-primary {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.article-content-body .btn-primary:hover {
+  opacity: 0.92;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.article-content-body .btn-download {
+  background: linear-gradient(135deg, #e11d48, #be123c);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.25);
+}
+
+.article-content-body .btn-download:hover {
+  opacity: 0.92;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(225, 29, 72, 0.35);
+}
+
+/* 13. Khung Tác Giả & Thẻ Tag */
+.article-content-body .tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 2.25rem 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.article-content-body .tag-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted-foreground);
+  margin-right: 0.25rem;
+}
+
+.article-content-body .tag-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--foreground);
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.article-content-body .tag-item:hover {
+  background: var(--foreground);
+  color: var(--background);
+}

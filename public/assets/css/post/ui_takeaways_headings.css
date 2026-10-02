@@ -1,0 +1,227 @@
+/* 02. Điểm Cốt Lõi (Key Takeaways) */
+.article-content-body .key-takeaways {
+  display: block;
+  background: #0f172a;
+  color: #cbd5e1;
+  border-radius: 18px;
+  padding: 1.6rem 1.85rem;
+  border: 1px solid #1e293b;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.25);
+  margin: 2.25rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .article-content-body .key-takeaways {
+    border-radius: 14px;
+    padding: 1.15rem 1.25rem;
+    margin: 1.5rem 0;
+  }
+}
+
+.article-content-body .key-takeaways::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(225, 29, 72, 0.18) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.article-content-body .key-takeaways .takeaway-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #fb7185;
+  background: rgba(225, 29, 72, 0.12);
+  border: 1px solid rgba(225, 29, 72, 0.25);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.article-content-body .key-takeaways .takeaway-list {
+  list-style: none;
+  list-style-type: none;
+  padding-left: 0;
+  padding-inline-start: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.article-content-body .key-takeaways ul.takeaway-list,
+.article-content-body .key-takeaways .takeaway-list li {
+  list-style: none !important;
+}
+
+.article-content-body .key-takeaways .takeaway-list li::marker {
+  content: "";
+}
+
+.article-content-body .key-takeaways .takeaway-list li {
+  position: relative;
+  padding-left: 1.75rem;
+  color: #e2e8f0;
+  font-size: 0.925rem;
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+
+.article-content-body .key-takeaways .takeaway-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #e11d48;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-content-body .key-takeaways .takeaway-list li strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.dark .article-content-body .key-takeaways {
+  background: #020617;
+  border-color: #1e293b;
+}
+
+/* 03. Hệ Thống Tiêu Đề Phong Cách (Heading Styles) */
+.article-content-body h2.heading-badge,
+.article-content-body .heading-badge {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--foreground);
+  margin: 2.5rem 0 1.25rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 640px) {
+  .article-content-body h2.heading-badge,
+  .article-content-body .heading-badge {
+    font-size: 1.65rem;
+  }
+}
+
+.article-content-body .heading-badge > span,
+.article-content-body h2.heading-badge > span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background: linear-gradient(135deg, #e11d48, #be123c);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(225, 29, 72, 0.25);
+  flex-shrink: 0;
+}
+
+.article-content-body h2.heading-number,
+.article-content-body .heading-number {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--foreground);
+  margin: 2.5rem 0 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 640px) {
+  .article-content-body h2.heading-number,
+  .article-content-body .heading-number {
+    font-size: 1.65rem;
+  }
+}
+
+.article-content-body .heading-number .num-circle,
+.article-content-body h2.heading-number .num-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--foreground);
+  color: var(--background);
+  font-size: 0.95rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.article-content-body h2.heading-underline,
+.article-content-body .heading-underline {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: .65rem .85rem;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--foreground);
+  margin: 2.5rem 0 1.25rem;
+  position: relative;
+  padding-bottom: 0.65rem;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 640px) {
+  .article-content-body h2.heading-underline,
+  .article-content-body .heading-underline {
+    font-size: 1.65rem;
+  }
+}
+
+.article-content-body .heading-underline::after,
+.article-content-body h2.heading-underline::after {
+  content: none;
+}
+
+.article-content-body h3.heading-bar,
+.article-content-body .heading-bar {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: .65rem .85rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--foreground);
+  margin: 2rem 0 1rem;
+  padding-left: 0.85rem;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+}
+
+@media (min-width: 640px) {
+  .article-content-body h3.heading-bar,
+  .article-content-body .heading-bar {
+    font-size: 1.35rem;
+  }
+}

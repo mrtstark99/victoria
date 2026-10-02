@@ -1,0 +1,209 @@
+/* Right Sticky Sidebar */
+.post-sidebar-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .post-sidebar-column {
+    gap: 2rem;
+  }
+}
+
+.sticky-sidebar-inner {
+  position: sticky;
+  top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .sticky-sidebar-inner {
+    gap: 2rem;
+  }
+}
+
+/* Sidebar Widgets */
+.sidebar-widget {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.25rem;
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.04);
+}
+
+@media (min-width: 640px) {
+  .sidebar-widget {
+    border-radius: 24px;
+    padding: 1.5rem;
+  }
+}
+
+.sidebar-widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar-widget-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Table of Contents (TOC) inside Sidebar */
+.sidebar-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.sidebar-toc-item a {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  line-height: 1.45;
+}
+
+.sidebar-toc-item.level-2 {
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.sidebar-toc-item.level-3 {
+  padding-left: 1rem;
+  font-size: 0.825rem;
+}
+
+.sidebar-toc-item a:hover {
+  color: var(--primary);
+  transform: translateX(3px);
+}
+
+.toc-collapse-btn {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  background-color: var(--secondary);
+  border: none;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+/* Trending List inside Sidebar */
+.sidebar-trending-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-trending-item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.65rem 0.75rem;
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.sidebar-trending-item:hover {
+  background-color: var(--secondary);
+  transform: translateX(4px);
+}
+
+.sidebar-trending-rank {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--muted-foreground);
+  opacity: 0.45;
+  min-width: 20px;
+  line-height: 1.4;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.sidebar-trending-item:hover .sidebar-trending-rank {
+  color: var(--foreground);
+  opacity: 1;
+}
+
+.sidebar-trending-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar-trending-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+  margin: 0;
+  display: block;
+  word-break: break-word;
+  transition: color 0.15s;
+}
+
+/* Mini Newsletter Box */
+.sidebar-newsletter-desc {
+  font-size: 0.825rem;
+  color: var(--muted-foreground);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.sidebar-newsletter-input-group {
+  display: flex;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background-color: var(--secondary);
+  overflow: hidden;
+  padding: 3px;
+  transition: all 0.2s;
+}
+
+.sidebar-newsletter-input-group:focus-within {
+  border-color: var(--foreground);
+  box-shadow: 0 0 0 3px var(--ring);
+  background-color: var(--card);
+}
+
+.sidebar-newsletter-input {
+  width: 100%;
+  padding: 0.5rem 0.85rem;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.825rem;
+  color: var(--foreground);
+}
+
+.sidebar-newsletter-btn {
+  background-color: var(--foreground);
+  color: var(--background);
+  border: none;
+  padding: 0 1rem;
+  border-radius: 9999px;
+  font-size: 0.775rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
