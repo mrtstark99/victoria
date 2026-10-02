@@ -55,6 +55,41 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
   if (menuToggle && mobileOverlay) {
+    let lockedScrollY = 0;
+    let bodyScrollStyles = null;
+    let htmlOverflow = '';
+
+    const lockPageScroll = () => {
+      if (bodyScrollStyles) return;
+      lockedScrollY = window.scrollY;
+      const bodyStyle = document.body.style;
+      bodyScrollStyles = {
+        position: bodyStyle.position,
+        top: bodyStyle.top,
+        left: bodyStyle.left,
+        right: bodyStyle.right,
+        width: bodyStyle.width,
+        overflow: bodyStyle.overflow
+      };
+      htmlOverflow = document.documentElement.style.overflow;
+      document.documentElement.style.overflow = 'hidden';
+      bodyStyle.position = 'fixed';
+      bodyStyle.top = `-${lockedScrollY}px`;
+      bodyStyle.left = '0';
+      bodyStyle.right = '0';
+      bodyStyle.width = '100%';
+      bodyStyle.overflow = 'hidden';
+    };
+
+    const unlockPageScroll = () => {
+      if (!bodyScrollStyles) return;
+      const bodyStyle = document.body.style;
+      Object.assign(bodyStyle, bodyScrollStyles);
+      document.documentElement.style.overflow = htmlOverflow;
+      bodyScrollStyles = null;
+      window.scrollTo(0, lockedScrollY);
+    };
+
     const closeMenu = () => {
       menuToggle.classList.remove('active');
       mobileOverlay.classList.remove('active');
@@ -63,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
       menuToggle.setAttribute('aria-label', 'Mở menu');
       mobileOverlay.setAttribute('aria-hidden', 'true');
       mobileOverlay.setAttribute('inert', '');
+      unlockPageScroll();
     };
 
     const toggleMenu = () => {
@@ -77,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
       menuToggle.setAttribute('aria-label', 'Đóng menu');
       mobileOverlay.setAttribute('aria-hidden', 'false');
       mobileOverlay.removeAttribute('inert');
+      lockPageScroll();
     };
 
     menuToggle.addEventListener('click', toggleMenu);
