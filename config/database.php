@@ -35,6 +35,11 @@ class Database {
             } catch (\Exception $e) {
                 // Column already exists
             }
+            try {
+                $this->pdo->exec("UPDATE users SET full_name = 'Tư vấn viên du học' WHERE full_name = 'Administrator' OR username = 'admin';");
+            } catch (\Exception $e) {
+                // Ignore
+            }
 
             // Ensure ai_agent_tasks has new calendar columns
             $colsToAdd = [

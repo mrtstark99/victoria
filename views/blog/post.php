@@ -125,8 +125,8 @@ include APP_ROOT . '/views/layouts/partials/page_hero.php';
                     <div class="post-author-info">
                         <img src="<?php echo htmlspecialchars($authorAvatar); ?>" alt="Tác giả" class="post-author-avatar" width="44" height="44" style="object-fit: cover;">
                         <div>
-                            <h3 class="post-author-name"><?php echo htmlspecialchars($post['author_name'] ?? 'Administrator'); ?></h3>
-                            <p class="post-author-role">Chuyên gia SEO &amp; AI</p>
+                            <h3 class="post-author-name"><?php echo htmlspecialchars($post['author_name'] ?? 'Tư vấn viên du học'); ?></h3>
+                            <p class="post-author-role">Tư vấn viên du học</p>
                         </div>
                     </div>
 
@@ -222,7 +222,7 @@ include APP_ROOT . '/views/layouts/partials/page_hero.php';
                 <div class="author-bio-card">
                     <img src="<?php echo htmlspecialchars($authorAvatar); ?>" alt="<?php echo htmlspecialchars($post['author_name'] ?? 'Tác giả'); ?>" class="author-bio-avatar" width="64" height="64" loading="lazy" onerror="this.src='https://ui-avatars.com/api/?name=Admin&background=0D8ABC&color=fff&size=128'">
                     <div class="author-bio-content">
-                        <span class="author-bio-title"><?php echo htmlspecialchars($post['author_name'] ?? 'Administrator'); ?></span>
+                        <span class="author-bio-title"><?php echo htmlspecialchars($post['author_name'] ?? 'Tư vấn viên du học'); ?></span>
                         <p class="author-bio-desc"><?php echo htmlspecialchars($post['author_bio'] ?? '', ENT_QUOTES, 'UTF-8') ?: 'Tác giả tại ' . htmlspecialchars(SITE_NAME, ENT_QUOTES, 'UTF-8') . '.'; ?></p>
                     </div>
                 </div>

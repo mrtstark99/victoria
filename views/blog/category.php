@@ -48,7 +48,7 @@ $defaultImg = 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto
                         <div class="article-card-footer">
                             <div class="article-card-author">
                                 <img src="<?php echo htmlspecialchars(getAuthorAvatar($post['author_avatar'] ?? null)); ?>" alt="<?php echo htmlspecialchars($post['author_name'] ?? 'Tác giả'); ?>" width="26" height="26" loading="lazy" style="border-radius: 50%; object-fit: cover;">
-                                <span><?php echo htmlspecialchars($post['author_name'] ?? 'Administrator'); ?></span>
+                                <span><?php echo htmlspecialchars($post['author_name'] ?? 'Tư vấn viên du học'); ?></span>
                             </div>
                             <a href="/blog/<?php echo htmlspecialchars($post['slug']); ?>" class="card-read-link" aria-label="Đọc tiếp bài <?php echo htmlspecialchars($post['title']); ?>">
                                 <span>Đọc tiếp</span>

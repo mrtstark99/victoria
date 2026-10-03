@@ -16,13 +16,42 @@ class AgentAuthorProfileProcessor {
         $author = User::findById($authorId);
         if (!$author) $this->fail(404, 'Assigned author profile not found.');
         $oldBio = (string)($author['bio'] ?? '');
+        $oldName = (string)($author['full_name'] ?? '');
         if ($write) {
             $bio = $input['bio'] ?? null;
-            if (!is_string($bio) || mb_strlen($bio, 'UTF-8') > 1000) $this->fail(400, 'bio must be a string of at most 1,000 characters.');
-            $stmt = \Database::getInstance()->prepare("UPDATE users SET bio = ?, updated_at = datetime('now','localtime') WHERE id = ?");
-            $stmt->execute([trim($bio), $authorId]);
-            AgentToken::logAudit($authorId, 'agent_update_author_bio', 'users', $authorId, ['bio' => $oldBio], ['bio' => trim($bio)]);
-            $author['bio'] = trim($bio);
+            if ($bio !== null) {
+                if (!is_string($bio) || mb_strlen($bio, 'UTF-8') > 1000) $this->fail(400, 'bio must be a string of at most 1,000 characters.');
+            }
+            $fullName = $input['full_name'] ?? ($input['name'] ?? null);
+            if ($fullName !== null) {
+                if (!is_string($fullName) || trim($fullName) === '' || mb_strlen($fullName, 'UTF-8') > 100) $this->fail(400, 'full_name must be a valid string of at most 100 characters.');
+            }
+            if ($bio === null && $fullName === null) {
+                $this->fail(400, 'Either bio or full_name must be provided.');
+            }
+
+            $updates = [];
+            $params = [];
+            if ($bio !== null) {
+                $updates[] = "bio = ?";
+                $params[] = trim($bio);
+            }
+            if ($fullName !== null) {
+                $updates[] = "full_name = ?";
+                $params[] = trim($fullName);
+            }
+            $params[] = $authorId;
+            $stmt = \Database::getInstance()->prepare("UPDATE users SET " . implode(', ', $updates) . ", updated_at = datetime('now','localtime') WHERE id = ?");
+            $stmt->execute($params);
+
+            if ($bio !== null) {
+                AgentToken::logAudit($authorId, 'agent_update_author_bio', 'users', $authorId, ['bio' => $oldBio], ['bio' => trim($bio)]);
+                $author['bio'] = trim($bio);
+            }
+            if ($fullName !== null) {
+                AgentToken::logAudit($authorId, 'agent_update_author_name', 'users', $authorId, ['full_name' => $oldName], ['full_name' => trim($fullName)]);
+                $author['full_name'] = trim($fullName);
+            }
         }
         $this->success(['id' => (int)$author['id'], 'full_name' => $author['full_name'], 'bio' => (string)($author['bio'] ?? '')]);
     }
